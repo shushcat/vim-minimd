@@ -20,7 +20,7 @@ Usage
 
 ### Header Jumping
 | Key        |    Action           |
-| ----------------------------------
+| ---------- | ------------------- |
 | `<Tab>`    |    Next header.     |
 | `S-<Tab>`  |    Previous header. |
 
