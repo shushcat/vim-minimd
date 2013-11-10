@@ -19,10 +19,10 @@ Usage
 -----
 
 ### Header Jumping
-Key             Action
-------          -------
-`<Tab>`         Next header.
-`S-<Tab>`       Previous header.
+| Key        |    Action           |
+| ----------------------------------
+| `<Tab>`    |    Next header.     |
+| `S-<Tab>`  |    Previous header. |
 
 ### Folding (Vim Defaults)
 Key             Action
