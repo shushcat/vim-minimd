@@ -25,17 +25,17 @@ Usage
 | `S-<Tab>`  |    Previous header. |
 
 ### Folding (Vim Defaults)
-Key             Action
-------          -------
-`zc`            Close fold.
-`zo`            Open fold.
-`zm`            Fold one more level.
-`zM`            Maximum fold-level.
-`zr`            Reveal one fold level.
-`zR`            Reveal all fold levels.
+| Key     |       Action                  |
+| ------- | ----------------------------- |
+| `zc`    |       Close fold.             |
+| `zo`    |       Open fold.              |
+| `zm`    |       Fold one more level.    |
+| `zM`    |       Maximum fold-level.     |
+| `zr`    |       Reveal one fold level.  |
+| `zR`    |       Reveal all fold levels. |
 
 ### Pandoc Export
-Key             Action
-------          -------
-`<Leader>html`  Export to `out.html` in the parent directory.
-`<Leader>pdf`   Export to `out.pdf` in the parent directory.
+| Key            | Action                                        |
+| -------------- | --------------------------------------------- |
+| `<Leader>html` | Export to `out.html` in the parent directory. |
+| `<Leader>pdf`  | Export to `out.pdf` in the parent directory.  |
