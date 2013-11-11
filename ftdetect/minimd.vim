@@ -1,1 +1,1 @@
-au BufRead,BufNewFile *.{markdown,md,mmd} set filetype=minimd
+au BufRead,BufNewFile *.{markdown,md,mkd,mmd} set filetype=minimd

@@ -17,9 +17,9 @@ if !exists("g:minimd_folding_disabled")
   set foldopen-=search
 endif
 
+" Softwrap lines.
 " Avoid wrapping at one-letter words.
 setlocal formatoptions=1
-" Softwrap lines.
 setlocal wrap
 setlocal wrapmargin=0
 setlocal textwidth=0
@@ -30,6 +30,16 @@ setlocal linebreak
 set breakat=\ ^I
 setlocal display=lastline
 setlocal autoindent
+setlocal nosmartindent
+
+setlocal comments=""
+" Don't auto-insert comment leaders.
+setlocal formatoptions-=c
+setlocal formatoptions-=r
+setlocal formatoptions-=o
+setlocal formatoptions-=2
+setlocal formatoptions+=n
+setlocal nocindent
 setlocal shiftwidth=4
 
 " KEYBINDINGS

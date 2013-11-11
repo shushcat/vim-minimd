@@ -17,12 +17,15 @@ syn match  Identifier "^\s*- \[ \]\s\+"
 syn match  Comment "^\s*- \[X\]\s.*$"
 " Numbered Lists:
 syn match  Identifier "^\s*\d\+\.\s\+"
+
 " Inline Code:
 syn region Operator start=/`/ end=/`/
 " Code Blocks:
-syn region Operator start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
+syn region Operator start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
+
+"syn region Operator start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
 " Block Quotes:
-syn region Comment start=/^\s*>/ end=/$/
+syn match Comment /^>.*\n\(.*\n\@<!\n\)*/ skipnl
 " Ignored Section:
 syn region Function start=/<!--/ end=/-->/
 " Trailing Spaces:
@@ -55,9 +58,6 @@ syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
 " Links:
 " TODO Make the match non-greedy.
 "syn region Comment start="\[" skip="\](" end=")"
-
-" Code Blocks - FIX: captures continuations on lists
-" syn region Operator start=/^\s*\n\(    \|\t\)/ end=/.*\n\s*\n/
 
 " Math:
 " Inline:
