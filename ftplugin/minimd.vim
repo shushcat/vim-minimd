@@ -7,6 +7,16 @@ if exists("g:minimd_plugin_loaded")
 endif
 let g:minimd_plugin_loaded = 1
 
+if !exists("g:minimd_folding_disabled")
+  setlocal foldexpr=minimd#MarkdownLevel()
+  setlocal foldmethod=expr
+
+  setlocal foldenable
+  setlocal foldlevel=1
+  setlocal foldcolumn=0
+  set foldopen-=search
+endif
+
 " Avoid wrapping at one-letter words.
 setlocal formatoptions=1
 " Softwrap lines.
@@ -43,7 +53,7 @@ nmap <Leader>wc :! wc -w "%"<CR>
 :nmap <Leader>tu :s/^\(\s*\)\- \[X\]/\1- [ ]/<CR><C-l>
 
 " Compile markdown as HTML.
-:nnoremap <silent> <LocalLeader>html :!pandoc --bibliography="$SyncFolder/Bibliography.bib" -f markdown -t html "%" > ./"%".html<CR><CR>
+:nnoremap <silent> <LocalLeader>html :!pandoc --bibliography="$SyncFolder/Bibliography.bib" -f markdown -t html "%" > ./out.html<CR><CR>
 
 " Compile markdown as PDF via LaTeX.
-:nnoremap <silent> <LocalLeader>pdf :!pandoc --bibliography="$SyncFolder/Bibliography.bib" --latex-engine=/usr/local/texlive/2013/bin/x86_64-darwin/xelatex -o ./"%".pdf "%"<CR><CR>
+:nnoremap <silent> <LocalLeader>pdf :!pandoc --bibliography="$SyncFolder/Bibliography.bib" --latex-engine=/usr/local/texlive/2013/bin/x86_64-darwin/xelatex -o ./out.pdf "%"<CR><CR>

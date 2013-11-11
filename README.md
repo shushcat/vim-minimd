@@ -14,6 +14,7 @@ A markdown syntax and filetype plugin for vim which aims to make writing and out
     - But headers, list items, citations, and code must be signified.
 5. Where possible, Vim's defaults are to be preserved.
 6. Configuration should only be required for interfacing with external tools
+7. Interface well with other tools.  Not to be limited to Vim plugins.
 
 Usage
 -----
