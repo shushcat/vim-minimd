@@ -60,6 +60,8 @@ nmap = 0i#<ESC><C-l>
 " Demote Header
 nmap - :s/##/#/1<CR><C-l>
 
+nmap <Leader><Space> :call minimd#TaskToggle()<CR>
+
 " Get a word count.
 nmap <Leader>wc :! wc -w "%"<CR>
 

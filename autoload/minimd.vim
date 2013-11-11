@@ -2,8 +2,8 @@
 " Language:     Minimal Markdown
 " Author:       John O Brickley
 
+" Folding:"{{{
 " Derived from vim-pandoc's folding.
-" Folding:
 function! minimd#MarkdownLevel()
     if getline(v:lnum) =~ '^# .*$'
         return ">1"
@@ -30,4 +30,16 @@ function! minimd#MarkdownLevel()
 		return ">2"
 	endif
     return "="
-endfunction
+endfunction"}}}
+
+" Task Toggling:"{{{
+function! minimd#TaskToggle()
+    let b:line = getline(".")
+    if b:line =~ '^- \[ \] .*$'
+        echo substitute(b:line, '^- \[ \] ', '- \[X\] ', "")
+    elseif b:line =~ '^- \[X\] .*$'
+        echo substitute(b:line, '^- \[X\] ', '- \[ \] ', "")
+    elseif b:line =~ '^- .*$'
+        echo substitute(b:line, "^- ", "- \[ \] ", "")
+    endif
+endfunction"}}}
