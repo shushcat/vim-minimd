@@ -35,11 +35,15 @@ endfunction"}}}
 " Task Toggling:"{{{
 function! minimd#TaskToggle()
     let b:line = getline(".")
+    let b:linenum = line(".")
     if b:line =~ '^- \[ \] .*$'
-        echo substitute(b:line, '^- \[ \] ', '- \[X\] ', "")
+        let b:newline = substitute(b:line, '^- \[ \] ', '- \[X\] ', "")
+        call setline(b:linenum, b:newline)
     elseif b:line =~ '^- \[X\] .*$'
-        echo substitute(b:line, '^- \[X\] ', '- \[ \] ', "")
+        let b:newline = substitute(b:line, '^- \[X\] ', '- \[ \] ', "")
+        call setline(b:linenum, b:newline)
     elseif b:line =~ '^- .*$'
-        echo substitute(b:line, "^- ", "- \[ \] ", "")
+        let b:newline = substitute(b:line, '^- ', '- \[ \] ', "")
+        call setline(b:linenum, b:newline)
     endif
 endfunction"}}}
