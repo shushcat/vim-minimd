@@ -19,11 +19,19 @@ A markdown syntax and filetype plugin for vim which aims to make writing and out
 Usage
 -----
 
-### Header Jumping
-| Key        |    Action           |
-| ---------- | ------------------- |
-| `<Tab>`    |    Next header.     |
-| `S-<Tab>`  |    Previous header. |
+### Headers
+#### Jumping
+| Key        | Action           |
+| ---------- | -----------------|
+| `<Tab>`    | Next header.     |
+| `S-<Tab>`  | Previous header. |
+
+#### Promotion and Demotion
+| Key |  Action         |
+| --- | ----------------|
+| `=` | Promote header. |
+| `-` | Demote header.  |
+
 
 ### Folding (Vim Defaults)
 | Key     |       Action                  |

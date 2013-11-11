@@ -55,6 +55,11 @@ map $ g$
 nmap <TAB> /^\s*#<CR><C-l>
 nmap <S-TAB> ?^\s*#<CR><C-l>
 
+" Promote Header
+nmap = 0i#<ESC><C-l>
+" Demote Header
+nmap - :s/#//1<CR><C-l>
+
 " Get a word count.
 nmap <Leader>wc :! wc -w "%"<CR>
 
