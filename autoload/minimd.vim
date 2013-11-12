@@ -36,14 +36,14 @@ endfunction"}}}
 function! minimd#TaskToggle()
     let b:line = getline(".")
     let b:linenum = line(".")
-    if b:line =~ '^- \[ \] .*$'
-        let b:newline = substitute(b:line, '^- \[ \] ', '- \[X\] ', "")
+    if b:line =~ '^\s*- \[ \] .*$'
+        let b:newline = substitute(b:line, '- \[ \] ', '- \[X\] ', "")
         call setline(b:linenum, b:newline)
-    elseif b:line =~ '^- \[X\] .*$'
-        let b:newline = substitute(b:line, '^- \[X\] ', '- \[ \] ', "")
+    elseif b:line =~ '^\s*- \[X\] .*$'
+        let b:newline = substitute(b:line, '- \[X\] ', '- \[ \] ', "")
         call setline(b:linenum, b:newline)
-    elseif b:line =~ '^- .*$'
-        let b:newline = substitute(b:line, '^- ', '- \[ \] ', "")
+    elseif b:line =~ '^\s*- .*$'
+        let b:newline = substitute(b:line, '- ', '- \[ \] ', "")
         call setline(b:linenum, b:newline)
     endif
 endfunction"}}}
