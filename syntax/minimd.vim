@@ -52,28 +52,17 @@ syn region Comment start="\[-@" end="\]"
 " Pandoc Headers:
 syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
 
-" Multimarkdown Headers:
-"syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
-
 " Links:
 " TODO Make the match non-greedy.
 "syn region Comment start="\[" skip="\](" end=")"
 
 " Math:
 " Inline:
-syn match Operator     "\$.*\$"
+syn match Operator     "\ $.*\$"
 " Block:
 syn region Operator start=/\$\$/ end=/\$\$/ " display math
 
 " Bold Headers:
 hi Header cterm=bold term=bold gui=bold
-
-" Fold Headers:
-" Level One:
-syn region myFold start="^# " end="\n^# " transparent fold
-" Level Two:
-syn region myFold start="^## " end="\n^# " transparent fold
-" Level Three:
-syn region myFold start="^### " end="\n# " transparent fold
 
 let b:current_syntax = "minimd"
