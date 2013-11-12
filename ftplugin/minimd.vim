@@ -65,12 +65,11 @@ nmap <Leader><Space> :call minimd#TaskToggle()<CR>
 " Get a word count.
 nmap <Leader>wc :! wc -w "%"<CR>
 
-:nmap <Leader>tt :s/^\(\s*\)\-/\1- [ ]/<CR><C-l>
-:nmap <Leader>tf :s/^\(\s*\)\- \[ \]/\1- [X]/<CR><C-l>
-:nmap <Leader>tu :s/^\(\s*\)\- \[X\]/\1- [ ]/<CR><C-l>
-
+" Pandoc Calls:"{{{
+if !exists("g:pandoc_options")
+    let g:pandoc_options= "--bibliography=$SyncFolder/Bibliography.bib --latex-engine=/usr/local/texlive/2013/bin/x86_64-darwin/xelatex"
+endif
 " Compile markdown as HTML.
-:nnoremap <silent> <LocalLeader>html :!pandoc --bibliography="$SyncFolder/Bibliography.bib" -f markdown -t html "%" > ./out.html<CR><CR>
-
+:nnoremap <LocalLeader>html :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-f markdown -t html" "%" "> ./out.html"'<CR><CR>"
 " Compile markdown as PDF via LaTeX.
-:nnoremap <silent> <LocalLeader>pdf :!pandoc --bibliography="$SyncFolder/Bibliography.bib" --latex-engine=/usr/local/texlive/2013/bin/x86_64-darwin/xelatex -o ./out.pdf "%"<CR><CR>
+:nnoremap <LocalLeader>pdf :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-o ./out.pdf" "%"'<CR><CR>"}}}
