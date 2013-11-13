@@ -50,8 +50,14 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 | `zr`    |       Reveal one fold level.  |
 | `zR`    |       Reveal all fold levels. |
 
-### Pandoc Export
+### Pandoc Integration
+#### Keybindings
 | Key            | Action                                        |
 | -------------- | --------------------------------------------- |
 | `<Leader>html` | Export to `out.html` in the parent directory. |
 | `<Leader>pdf`  | Export to `out.pdf` in the parent directory.  |
+
+#### Pandoc Options
+If you would like to pass options, such as a bibliography's location, to Pandoc, add a line like the following to your `.vimrc`:
+
+    let g:pandoc_options = "--bibliography=<path/to/.bib>"

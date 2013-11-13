@@ -73,7 +73,7 @@ endfunction"}}}
 
 " Pandoc:"{{{
 if !exists("g:pandoc_options")
-    let g:pandoc_options= "--bibliography=$SyncFolder/Bibliography.bib --latex-engine=/usr/local/texlive/2013/bin/x86_64-darwin/xelatex"
+    let g:pandoc_options = ""
 endif
 " Compile markdown as HTML.
 :nnoremap <LocalLeader>html :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-f markdown -t html" "%" "> ./out.html"'<CR><CR>"
