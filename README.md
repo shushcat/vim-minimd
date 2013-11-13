@@ -34,9 +34,9 @@ Usage
 
 
 ### Tasks
-| Key               |  Action                        |
-| ------------------| ------------------------------ |
-| `<Leader><Space>` | Toggle task completion status. |
+| Key      |  Action                        |
+| -------- | ------------------------------ |
+| `Space>` | Toggle task completion status. |
 
 This works with list items written in Github Style Markdown.  Unnumbered list items are converted to tasks as in `- ` to `- [ ] `, and tasks are toggled between `- [ ] ` and `- [X] `.
 
