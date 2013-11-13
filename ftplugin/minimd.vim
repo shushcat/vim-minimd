@@ -54,12 +54,13 @@ map $ g$"}}}
 
 " Header Motion:"{{{
 nmap <TAB> /^\s*#<CR><C-l>
-nmap <S-TAB> ?^\s*#<CR><C-l>"}}}
+nmap <S-TAB> ?^\s*#<CR><C-l>
+"}}}
 
 " Header Levels:"{{{
-"nmap = 0i#<ESC><C-l>
-nmap = :call minimd#PromoteHeader()<CR>
-nmap - :call minimd#DemoteHeader()<CR> "}}}
+nnoremap <silent> = :call minimd#PromoteHeader()<CR>
+nnoremap <silent> - :call minimd#DemoteHeader()<CR>
+"}}}
 
 " Task Toggle:"{{{
 nmap <Leader><Space> :call minimd#TaskToggle()<CR>"}}}
@@ -77,6 +78,8 @@ endif
 " Compile markdown as HTML.
 :nnoremap <LocalLeader>html :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-f markdown -t html" "%" "> ./out.html"'<CR><CR>"
 " Compile markdown as PDF via LaTeX.
-:nnoremap <silent> <LocalLeader>pdf :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-o ./out.pdf %"'<CR><CR>"}}}"}}}
+:nnoremap <silent> <LocalLeader>pdf :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-o ./out.pdf %"'<CR><CR>
+"}}}
+"}}}
 
 let g:minimd_plugin_loaded = 1
