@@ -45,5 +45,31 @@ function! minimd#TaskToggle()
     elseif b:line =~ '^\s*- .*$'
         let b:newline = substitute(b:line, '- ', '- \[ \] ', "")
         call setline(b:linenum, b:newline)
+    else
+        let b:newline = substitute(b:line, '^', '- ', "")
+        call setline(b:linenum, b:newline)
+    endif
+endfunction"}}}
+
+" Header Promotion:"{{{
+function! minimd#PromoteHeader()
+    let b:line = getline(".")
+    let b:linenum = line(".")
+    if b:line =~ '^#* .*$'
+        let b:newline = substitute(b:line, '#', '##', "")
+        call setline(b:linenum, b:newline)
+    elseif b:line =~ '^.*$'
+        let b:newline = substitute(b:line, '^', '# ', "")
+        call setline(b:linenum, b:newline)
+    endif
+endfunction"}}}
+
+" Header Demotion:"{{{
+function! minimd#DemoteHeader()
+    let b:line = getline(".")
+    let b:linenum = line(".")
+    if b:line =~ '^##* .*$'
+        let b:newline = substitute(b:line, '##', '#', "")
+        call setline(b:linenum, b:newline)
     endif
 endfunction"}}}
