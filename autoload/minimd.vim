@@ -45,9 +45,6 @@ function! minimd#TaskToggle()
     elseif b:line =~ '^\s*- .*$'
         let b:newline = substitute(b:line, '- ', '- \[ \] ', "")
         call setline(b:linenum, b:newline)
-    else
-        let b:newline = substitute(b:line, '^', '- ', "")
-        call setline(b:linenum, b:newline)
     endif
 endfunction"}}}
 
