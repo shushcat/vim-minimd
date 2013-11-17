@@ -39,15 +39,9 @@ syn match  Header /^.\+\n-\+$/
 " Inline Footnotes:
 syn region Comment start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
 
-" Citations:
-" Full:
-syn region Comment start="\ @" end="[ ,.?!\n]"
-" Parentheticals:
-syn region Comment start="(@" end=")"
-syn region Comment start="\[@" end="\]"
-" Parenthetical Dates:
-syn region Comment start="(-@" end=")"
-syn region Comment start="\[-@" end="\]"
+" Pandoc Citations:
+syn region Comment start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
+syn region Comment start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
 
 " Pandoc Headers:
 syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
