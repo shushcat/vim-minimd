@@ -6,7 +6,9 @@ Synopsis
 A markdown syntax and filetype plugin for vim which aims to make writing and outlining pleasant.  For this use case, 'pleasant' means that the following requirements must be met.
 
 ### Requirements
-1. It must be easy to navigate between headers.
+1. It must be easy to work with headers.
+    - Shortcuts for header promotion and demotion.
+    - Shortcuts for jumping between headers.
 2. Folding must work properly. 
     - Headers must be included in folds.
 3. Text must soft wrap at screen boundaries without breaking words.
@@ -14,7 +16,7 @@ A markdown syntax and filetype plugin for vim which aims to make writing and out
     - But headers, list items, citations, and code must be signified.
 5. Where possible, Vim's defaults are to be preserved.
 6. Configuration should only be required for interfacing with external tools
-7. Interface well with other tools.  Not to be limited to Vim plugins.
+7. Export via Pandoc to html or pdf should work by default.
 
 Usage
 -----
