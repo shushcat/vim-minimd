@@ -6,17 +6,17 @@ Synopsis
 A markdown syntax and filetype plugin for vim which aims to make writing and outlining pleasant.  For this use case, 'pleasant' means that the following requirements must be met.
 
 ### Requirements
-1. It must be easy to work with headers.
-    - Shortcuts for header promotion and demotion.
+1. It must be easy to work with headers:
+    - Shortcuts for header promotion and demotion;
     - Shortcuts for jumping between headers.
-2. Folding must work properly. 
+2. Section folding must work properly:
     - Headers must be included in folds.
 3. Text must soft wrap at screen boundaries without breaking words.
-4. Syntax highlighting mustn't be too garrish.
+4. Syntax highlighting mustn't be too garrish,
     - But headers, list items, citations, and code must be signified.
 5. Where possible, Vim's defaults are to be preserved.
 6. Configuration should only be required for interfacing with external tools
-7. Export via Pandoc to html or pdf should work by default.
+7. Export via Pandoc to HTML or PDF should work by default.
 
 Usage
 -----
@@ -45,12 +45,12 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 ### Folding (Vim Defaults)
 | Key     |       Action                  |
 | ------- | ----------------------------- |
-| `zc`    |       Close fold.             |
-| `zo`    |       Open fold.              |
-| `zm`    |       Fold one more level.    |
-| `zM`    |       Maximum fold-level.     |
-| `zr`    |       Reveal one fold level.  |
-| `zR`    |       Reveal all fold levels. |
+| `zc`    |       __C__lose fold.             |
+| `zo`    |       __O__pen fold.              |
+| `zm`    |       Fold one __m__ore level.    |
+| `zM`    |       __M__aximum fold-level.     |
+| `zr`    |       __R__eveal one fold level.  |
+| `zR`    |       __R__eveal all fold levels. |
 
 ### Pandoc Integration
 #### Keybindings
@@ -60,6 +60,6 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 | `<Leader>pdf`  | Export to `out.pdf` in the parent directory.  |
 
 #### Pandoc Options
-If you would like to pass options, such as a bibliography's location, to Pandoc, add a line like the following to your `.vimrc`:
+If you would like to pass options, such as a bibliography's location, to Pandoc, add a line like the following, which sets the bibliography to `~/my.bib` and turns on section-numbering, to your `.vimrc`:
 
-    let g:pandoc_options = "--bibliography=<path/to/.bib>"
+    let g:pandoc_options = "-N --bibliography=~/my.bib>"
