@@ -65,6 +65,9 @@ nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 " Task Toggle:"{{{
 nnoremap <silent> <Space> :call minimd#TaskToggle()<CR>"}}}
 
+" Task Highlight:{{{
+nnoremap <silent> <Leader>t /^\s*- \[ \].*$<CR>"}}}
+
 " Word Count:"{{{
 nmap <Leader>wc :call minimd#WordCount()<CR>
 function! minimd#WordCount ()
