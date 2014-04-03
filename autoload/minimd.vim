@@ -30,7 +30,17 @@ function! minimd#MarkdownLevel()
 		return ">2"
 	endif
     return "="
-endfunction"}}}
+endfunction
+"}}}
+
+" Link Following:"{{{
+"function! minimd#LinkFollow()
+"    let b:line = getline(".")
+"    if b:line =~ '^.*\[\[.*\]\].*$'
+"        exec gf
+"    endif
+"endfunction
+" }}}
 
 " Task Toggling:"{{{
 function! minimd#TaskToggle()
@@ -46,7 +56,8 @@ function! minimd#TaskToggle()
         let b:newline = substitute(b:line, '- ', '- \[ \] ', "")
         call setline(b:linenum, b:newline)
     endif
-endfunction"}}}
+endfunction
+"}}}
 
 " Header Promotion:"{{{
 function! minimd#PromoteHeader()
@@ -59,7 +70,8 @@ function! minimd#PromoteHeader()
         let b:newline = substitute(b:line, '^', '# ', "")
         call setline(b:linenum, b:newline)
     endif
-endfunction"}}}
+endfunction
+"}}}
 
 " Header Demotion:"{{{
 function! minimd#DemoteHeader()
@@ -69,4 +81,5 @@ function! minimd#DemoteHeader()
         let b:newline = substitute(b:line, '##', '#', "")
         call setline(b:linenum, b:newline)
     endif
-endfunction"}}}
+endfunction
+"}}}
