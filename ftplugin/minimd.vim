@@ -46,11 +46,11 @@ setlocal shiftwidth=4"}}}
 " KEYBINDINGS:"{{{
 
 " Line Motion:"{{{
-map j gj
-map k gk
-map 0 g0
-map ^ g^
-map $ g$"}}}
+"map j gj
+"map k gk
+"map 0 g0
+"map ^ g^
+"map $ g$"}}}
 
 " Header Motion:"{{{
 nmap <TAB> /^\s*#<CR><C-l>
@@ -63,10 +63,10 @@ nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 "}}}
 
 " Task Toggle:"{{{
-nnoremap <silent> <Space> :call minimd#TaskToggle()<CR>"}}}
+nnoremap <silent> <Leader>x :call minimd#TaskToggle()<CR>"}}}
 
-" Task Highlight:{{{
-nnoremap <silent> <Leader>t k/^\s*- \[ \].*$<CR>"}}}
+" Unfinished Task Highlight:{{{
+nnoremap <silent> <Leader>t %/^\s*- \[ \].*$<CR>"}}}
 
 " Word Count:"{{{
 nmap <Leader>wc :call minimd#WordCount()<CR>
