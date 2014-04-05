@@ -52,8 +52,8 @@ setlocal shiftwidth=4
 " KEYBINDINGS:"{{{
 
 " Header Motion:"{{{
-nmap <TAB> /^\s*#<CR><C-l>
-nmap <S-TAB> ?^\s*#<CR><C-l>
+nnoremap <silent> <TAB> /^\s*#<CR> :nohl<CR>
+nnoremap <silent> <S-TAB> ?^\s*#<CR><C-l>
 " }}}
 
 " Header Levels:"{{{

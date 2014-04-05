@@ -45,12 +45,12 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 ### Folding (Vim Defaults)
 | Key     |       Action                  |
 | ------- | ----------------------------- |
-| `zc`    |       __C__lose fold.             |
-| `zo`    |       __O__pen fold.              |
-| `zm`    |       Fold one __m__ore level.    |
-| `zM`    |       __M__aximum fold-level.     |
-| `zr`    |       __R__eveal one fold level.  |
-| `zR`    |       __R__eveal all fold levels. |
+| `zc`    |       **C**lose fold.             |
+| `zo`    |       **O**pen fold.              |
+| `zm`    |       Fold one **m**ore level.    |
+| `zM`    |       **M**aximum fold-level.     |
+| `zr`    |       **R**eveal one fold level.  |
+| `zR`    |       **R**eveal all fold levels. |
 
 ### Pandoc Integration
 #### Keybindings
