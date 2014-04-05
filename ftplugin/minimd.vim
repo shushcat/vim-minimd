@@ -45,13 +45,6 @@ setlocal shiftwidth=4"}}}
 
 " KEYBINDINGS:"{{{
 
-" Line Motion:"{{{
-"map j gj
-"map k gk
-"map 0 g0
-"map ^ g^
-"map $ g$"}}}
-
 " Header Motion:"{{{
 nmap <TAB> /^\s*#<CR><C-l>
 nmap <S-TAB> ?^\s*#<CR><C-l>
