@@ -52,7 +52,7 @@ syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
 
 " Math:
 " Inline:
-syn match Operator     "\ $.*\$"
+syn match Operator     "\ $\S*\$"
 " Block:
 syn region Operator start=/\$\$/ end=/\$\$/ " display math
 

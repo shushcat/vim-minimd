@@ -70,7 +70,7 @@ nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 " }}}
 
 " Task Toggle:"{{{
-nnoremap <silent> <Leader>x :call minimd#TaskToggle()<CR>
+nnoremap <silent> <CR> :call minimd#TaskToggle()<CR>
 " }}}
 
 " Unfinished Task Highlight:{{{

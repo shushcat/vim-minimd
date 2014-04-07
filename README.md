@@ -38,13 +38,13 @@ Usage
 ### Tasks
 | Key      |  Action                        |
 | -------- | ------------------------------ |
-| `<Space>` | Toggle task completion status. |
+| `<CR>`   | Toggle task completion status. |
 
 This works with list items written in Github Style Markdown.  Unnumbered list items are converted to tasks as in `- ` to `- [ ] `, and tasks are toggled between `- [ ] ` and `- [X] `.
 
 ### Folding (Vim Defaults)
-| Key     |       Action                  |
-| ------- | ----------------------------- |
+| Key     | Action                          |
+| ------- | ------------------------------- |
 | `zc`    |       *C*lose fold.             |
 | `zo`    |       *O*pen fold.              |
 | `zm`    |       Fold one *m*ore level.    |
