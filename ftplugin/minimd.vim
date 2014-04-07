@@ -60,8 +60,17 @@ map $ g$
 " }}}
 
 " Header Motion:"{{{
-nnoremap <silent> <TAB> /^\s*#<CR> :nohl<CR>
-nnoremap <silent> <S-TAB> ?^\s*#<CR> :nohl<CR>
+nnoremap <silent> <TAB> :call minimd#HeaderNext()<CR>
+function! minimd#HeaderNext ()
+    normal! ^
+    /^\s*#
+endfunction
+
+nnoremap <silent> <S-TAB> :call minimd#HeaderPrev()<CR>
+function! minimd#HeaderPrev ()
+    normal! ^
+    ?^\s*#
+endfunction
 " }}}
 
 " Header Levels:"{{{
