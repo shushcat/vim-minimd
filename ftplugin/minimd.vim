@@ -1,6 +1,6 @@
 " Vim filetype plugin
 " Language:     Minimal Markdown
-" Author:       John O Brickley
+" Author:       John O. Brickley
 
 if exists("g:minimd_plugin_loaded")
     finish
@@ -79,7 +79,7 @@ nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 " }}}
 
 " Task Toggle:"{{{
-nnoremap <silent> <CR> :call minimd#TaskToggle()<CR>
+nmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 " }}}
 
 " Unfinished Task Highlight:{{{
