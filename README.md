@@ -60,6 +60,8 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 | `<Leader>pdf`  | Export to `out.pdf` in the parent directory.  |
 
 #### Pandoc Options
-If you would like to pass options, such as a bibliography's location, to Pandoc, add a line like the following, which sets the bibliography to `~/my.bib` and turns on section-numbering, to your `.vimrc`:
+Options can be passed to Pandoc, either globally or per-filetype by defining `g:pandoc_options`, `g:pandoc_options_html`, and `g:pandoc_options_latex` in your `.vimrc`.  So, for example, if you would like to set a bibliography for use while exporting via Latex, you might write:
 
-    let g:pandoc_options = "-N --bibliography=~/my.bib>"
+    let g:pandoc_options = "-N --bibliography=~/my.bib"
+
+Where `my.bib` is your BibTeX bibliography.

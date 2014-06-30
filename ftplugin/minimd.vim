@@ -97,10 +97,17 @@ endfunction
 if !exists("g:pandoc_options")
     let g:pandoc_options = ""
 endif
+if !exists("g:pandoc_options_html")
+    let g:pandoc_options_html = ""
+endif
+if !exists("g:pandoc_options_latex")
+    let g:pandoc_options_latex = ""
+endif
+"
 " Compile markdown as HTML.
-:nnoremap <LocalLeader>html :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-f markdown -t html" "\"%\"" "> ./out.html"'<CR><CR>
+:nnoremap <LocalLeader>html :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options g:pandoc_options_html "-f markdown -t html" "\"%\"" "> ./out.html"'<CR><CR>
 " Compile markdown as PDF via LaTeX.
-:nnoremap <silent> <LocalLeader>pdf :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options "-o ./out.pdf " "\"%\""'<CR><CR>
+:nnoremap <silent> <LocalLeader>pdf :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options g:pandoc_options_latex "-o ./out.pdf " "\"%\""'<CR><CR>
 " }}}
 " }}}
 
