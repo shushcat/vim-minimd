@@ -79,7 +79,7 @@ nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 " }}}
 
 " Task Toggle:"{{{
-nmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
+nmap <silent><buffer> <C-Space> :call minimd#TaskToggle()<CR>
 " }}}
 
 " Unfinished Task Highlight:{{{
