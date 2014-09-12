@@ -50,6 +50,7 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 
 
 ### Folding (Vim Defaults)
+A listing of some of Vim's folding commands follows.
 | Key     | Action                          |
 | ------- | ------------------------------- |
 | `zc`    |       *C*lose fold.             |
@@ -58,6 +59,7 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 | `zM`    |       *M*aximum fold-level.     |
 | `zr`    |       *R*eveal one fold level.  |
 | `zR`    |       *R*eveal all fold levels. |
+For more information, see `:h folding`.
 
 ### Pandoc Integration
 #### Keybindings
