@@ -51,6 +51,7 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 
 ### Folding (Vim Defaults)
 A listing of some of Vim's folding commands follows.
+
 | Key     | Action                          |
 | ------- | ------------------------------- |
 | `zc`    |       *C*lose fold.             |
