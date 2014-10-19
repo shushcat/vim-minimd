@@ -6,16 +6,16 @@ Synopsis
 A markdown syntax and filetype plugin for vim which aims to make writing and outlining pleasant.  For this use case, 'pleasant' means that the following:
 
 ### Requirements
-1. Working with headers must be fast and easy.
+1. Working with headers must be fast and easy:
     - Shortcuts for header promotion and demotion;
     - Shortcuts for jumping between headers.
 2. Section folding must work properly:
-    - Headers must be included in folds.
+    - Lower level headers must be included in folds.
 3. Text must soft wrap at screen boundaries without breaking words.
-4. Syntax highlighting mustn't be too garrish,
-    - But headers, list items, citations, and code must be signified.
+4. Syntax highlighting mustn't be too garrish:
+    - Highlight only headers, list items, citations, and code.
 5. Where possible, Vim's defaults should be preserved.
-6. Configuration should only be required for interfacing with external tools
+6. Configuration should only be required for interfacing with external tools.
 7. Export via Pandoc to HTML or PDF should work by default.
 
 Usage
