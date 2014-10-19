@@ -59,6 +59,7 @@ A listing of some of Vim's folding commands follows.
 | `zM`    |       *M*aximum fold-level.     |
 | `zr`    |       *R*eveal one fold level.  |
 | `zR`    |       *R*eveal all fold levels. |
+
 For more information, see `:h folding`.
 
 ### Pandoc Integration
