@@ -69,7 +69,7 @@ For more information, see `:h folding`.
 | `<Leader>pdf`  | Export to `out.pdf` in the current directory.  |
 
 #### Pandoc Options
-Options can be passed to Pandoc, either globally or per-filetype by defining `g:pandoc_options`, `g:pandoc_options_html`, and `g:pandoc_options_latex` in your `.vimrc`.  So, for example, if you would like to number your headers and specify a bibliography for use while, you might write:
+Options can be passed to Pandoc, either globally or per-filetype, by defining `g:pandoc_options`, `g:pandoc_options_html`, and `g:pandoc_options_latex` in your `.vimrc`.  So, for example, if you would like to number your headers and specify a bibliography, you might write:
 
     let g:pandoc_options = "-N --bibliography=~/my.bib"
 
