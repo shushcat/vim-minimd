@@ -6,9 +6,6 @@ if exists("g:minimd_plugin_loaded")
     finish
 endif
 
-" General Settings:
-setlocal nonumber
-
 " Fold Settings:"{{{
 if !exists("g:minimd_folding_disabled")
   setlocal foldexpr=minimd#MarkdownLevel()
@@ -83,7 +80,7 @@ nmap <silent><buffer> <Space> :call minimd#TaskToggle()<CR>
 vmap <silent><buffer> <Space> :call minimd#TaskToggle()<CR>
 " }}}
 
-" Unfinished Task Highlight:{{{
+" Highlight Unfinished Tasks:{{{
 nnoremap <silent> <Leader>t %/^\s*- \[ \].*$<CR>
 " }}}
 
