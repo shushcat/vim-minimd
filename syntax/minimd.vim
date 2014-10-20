@@ -19,11 +19,11 @@ syn match  Comment "^\s*- \[X\]\s.*$"
 syn match  Identifier "^\s*\d\+\.\s\+"
 
 " Inline Code:
-syn region Operator start=/`/ end=/`/
+syn region String start=/`/ end=/`/
 " Code Blocks:
-syn region Operator start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
+syn region String start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
 
-"syn region Operator start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
+"syn region String start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
 " Block Quotes:
 syn match Comment /^>.*\n\(.*\n\@<!\n\)*/ skipnl
 " Ignored Section:
