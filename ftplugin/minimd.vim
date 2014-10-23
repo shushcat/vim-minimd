@@ -47,6 +47,10 @@ setlocal shiftwidth=4
 " }}}
 
 " KEYBINDINGS:"{{{
+" Line Motion:"{{{
+nmap j gj
+nmap k gk
+" }}}
 
 " Header Motion:"{{{
 nnoremap <silent> <TAB> :call minimd#HeaderNext()<CR>
