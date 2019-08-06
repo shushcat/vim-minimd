@@ -2,8 +2,7 @@
 " Language:     Minimal Markdown
 " Author:       John O Brickley
 
-" Folding:"{{{
-" Derived from vim-pandoc's folding.
+" Folding:
 function! minimd#MarkdownLevel()
     if getline(v:lnum) =~ '^# .*$'
         return ">1"
@@ -31,18 +30,8 @@ function! minimd#MarkdownLevel()
 	endif
     return "="
 endfunction
-"}}}
 
-" Link Following:"{{{
-"function! minimd#LinkFollow()
-"    let b:line = getline(".")
-"    if b:line =~ '^.*\[\[.*\]\].*$'
-"        exec gf
-"    endif
-"endfunction
-" }}}
-
-" Task Toggling:"{{{
+" Task Toggling:
 function! minimd#TaskToggle()
     let b:line = getline(".")
     let b:linenum = line(".")
@@ -57,9 +46,8 @@ function! minimd#TaskToggle()
         call setline(b:linenum, b:newline)
     endif
 endfunction
-"}}}
 
-" Header Promotion:"{{{
+" Header Promotion:
 function! minimd#PromoteHeader()
     let b:line = getline(".")
     let b:linenum = line(".")
@@ -71,9 +59,8 @@ function! minimd#PromoteHeader()
         call setline(b:linenum, b:newline)
     endif
 endfunction
-"}}}
 
-" Header Demotion:"{{{
+" Header Demotion:
 function! minimd#DemoteHeader()
     let b:line = getline(".")
     let b:linenum = line(".")
@@ -82,4 +69,3 @@ function! minimd#DemoteHeader()
         call setline(b:linenum, b:newline)
     endif
 endfunction
-"}}}
