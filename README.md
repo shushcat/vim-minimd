@@ -1,11 +1,10 @@
-minimd
-=======
+# minimd
 
-Synopsis
----------
+## Synopsis
 A markdown syntax and filetype plugin for vim which aims to make writing and outlining pleasant.  For this use case, 'pleasant' means that the following:
 
 ### Requirements
+
 1. Working with headers must be fast and easy:
     - Shortcuts for header promotion and demotion;
     - Shortcuts for jumping between headers.
@@ -18,17 +17,19 @@ A markdown syntax and filetype plugin for vim which aims to make writing and out
 6. Configuration should only be required for interfacing with external tools.
 7. Export via Pandoc to HTML or PDF should work by default.
 
-Usage
------
+## Usage
 
 ### Headers
+
 #### Jumping
+
 | Key       | Action           |
 | --------- | -----------------|
 | `<Tab>`   | Next header.     |
 | `<S-Tab>` | Previous header. |
 
 #### Promotion and Demotion
+
 | Key |  Action         |
 | --- | ----------------|
 | `=` | Promote header. |
@@ -36,6 +37,7 @@ Usage
 
 
 ### Tasks
+
 | Key       |  Action                        |
 | --------- | ------------------------------ |
 | `<Space>` | Toggle task completion status. |
@@ -43,6 +45,7 @@ Usage
 This works with list items written in Github Style Markdown.  Unnumbered list items are converted to tasks as in `- ` to `- [ ] `, and tasks are toggled between `- [ ] ` and `- [X] `.
 
 ### Buffers
+
 | Key           | Action                                      |
 | ------------- | ------------------------------------------- |
 | `<CR>`        | Jump to file under cursor; alias for `gf`.  |
@@ -50,6 +53,7 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 
 
 ### Folding (Vim Defaults)
+
 A listing of some of Vim's folding commands follows.
 
 | Key     | Action                          |
@@ -64,13 +68,16 @@ A listing of some of Vim's folding commands follows.
 For more information, see `:h folding`.
 
 ### Pandoc Integration
+
 #### Keybindings
+
 | Key            | Action                                         |
 | -------------- | ---------------------------------------------- |
 | `<Leader>html` | Export to `out.html` in the current directory. |
 | `<Leader>pdf`  | Export to `out.pdf` in the current directory.  |
 
 #### Pandoc Options
+
 Options can be passed to Pandoc, either globally or per-filetype, by defining `g:pandoc_options`, `g:pandoc_options_html`, and `g:pandoc_options_latex` in your `.vimrc`.  So, for example, if you would like to number your headers and specify a bibliography, you might write:
 
     let g:pandoc_options = "-N --bibliography=~/my.bib"
