@@ -77,10 +77,7 @@ vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 " Highlight Unfinished Tasks:
 nnoremap <silent> <Leader>t %/^\s*- \[ \].*$<CR>
 
-" Word Count: (TODO integrate live wordcount function for status line)
-nmap <Leader>wc :call minimd#WordCount()<CR>
-function! minimd#WordCount ()
-    exec '!wc -w "%"'
-endfunction
+" Word Count:
+set statusline=%<%f\ wc:%{minimd#WordCount()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 let g:minimd_plugin_loaded = 1
