@@ -38,21 +38,31 @@ setlocal formatoptions-=o
 setlocal formatoptions-=2
 setlocal formatoptions+=n
 setlocal nocindent
+setlocal number
+setlocal numberwidth=6
 setlocal shiftwidth=4
 
 " Headers:
-nnoremap <silent> <TAB> :call minimd#HeaderNext()<CR>
+nmap <silent> <TAB> :call minimd#HeaderNext()<CR>
 function! minimd#HeaderNext ()
     normal! ^
     /^\s*#
 endfunction
-nnoremap <silent> <S-TAB> :call minimd#HeaderPrev()<CR>
+nmap <silent> <S-TAB> :call minimd#HeaderPrev()<CR>
 function! minimd#HeaderPrev ()
     normal! ^
     ?^\s*#
 endfunction
 nnoremap <silent> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent> - :call minimd#DemoteHeader()<CR>
+
+" Highlights:
+highlight LineNr ctermfg=darkgrey
+highlight Folded ctermbg=black ctermfg=darkgrey
+highlight FoldColumn ctermbg=black ctermfg=darkgrey
+highlight LineNr guifg=darkgrey
+highlight Folded guibg=black guifg=darkgrey
+highlight FoldColumn guibg=black guifg=darkgrey
 
 " Motion:
 nmap j gj
