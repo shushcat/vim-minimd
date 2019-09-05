@@ -15,8 +15,11 @@ if !exists("g:minimd_folding_disabled")
   setlocal foldcolumn=0
   set foldopen-=search
 endif
+
 nmap <silent> <Space> za
 vmap <silent> <Space> za
+nmap <silent> z<Space> :call minimd#CycleFolding()<CR>
+vmap <silent> z<Space> :call minimd#CycleFolding()<CR>
 
 " Formatting:
 setlocal formatoptions=1
@@ -43,12 +46,12 @@ setlocal numberwidth=6
 setlocal shiftwidth=4
 
 " Headers:
-nmap <silent> <TAB> :call minimd#HeaderNext()<CR>
+nmap <silent> <Tab> :call minimd#HeaderNext()<CR>
 function! minimd#HeaderNext ()
     normal! ^
     /^\s*#
 endfunction
-nmap <silent> <S-TAB> :call minimd#HeaderPrev()<CR>
+nmap <silent> <BS> :call minimd#HeaderPrev()<CR>
 function! minimd#HeaderPrev ()
     normal! ^
     ?^\s*#

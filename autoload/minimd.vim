@@ -6,29 +6,26 @@
 function! minimd#MarkdownLevel()
     if getline(v:lnum) =~ '^# .*$'
         return ">1"
-    endif
-    if getline(v:lnum) =~ '^## .*$'
+      elseif getline(v:lnum) =~ '^## .*$'
         return ">2"
-    endif
-    if getline(v:lnum) =~ '^### .*$'
+      elseif getline(v:lnum) =~ '^### .*$'
         return ">3"
-    endif
-    if getline(v:lnum) =~ '^#### .*$'
+      elseif getline(v:lnum) =~ '^#### .*$'
         return ">4"
-    endif
-    if getline(v:lnum) =~ '^##### .*$'
+      elseif getline(v:lnum) =~ '^##### .*$'
         return ">5"
-    endif
-    if getline(v:lnum) =~ '^###### .*$'
+      elseif getline(v:lnum) =~ '^###### .*$'
         return ">6"
+      else
+        return "="
     endif
-	if getline(v:lnum) =~ '^[^-=].\+$' && getline(v:lnum+1) =~ '^=\+$'
-		return ">1"
-	endif
-	if getline(v:lnum) =~ '^[^-=].\+$' && getline(v:lnum+1) =~ '^-\+$'
-		return ">2"
-	endif
-    return "="
+endfunction
+function! minimd#CycleFolding()
+    if &foldlevel
+      setlocal foldlevel=0
+    else
+      setlocal foldlevel=6
+    endif
 endfunction
 
 " Task Toggling:
@@ -64,8 +61,11 @@ endfunction
 function! minimd#DemoteHeader()
     let b:line = getline(".")
     let b:linenum = line(".")
-    if b:line =~ '^##* .*$'
+    if b:line =~ '^##\+ .*$'
         let b:newline = substitute(b:line, '##', '#', "")
+        call setline(b:linenum, b:newline)
+    elseif b:line =~ '^# .*$'
+        let b:newline = substitute(b:line, '^# ', '', "")
         call setline(b:linenum, b:newline)
     endif
 endfunction
