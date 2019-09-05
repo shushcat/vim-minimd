@@ -4,31 +4,23 @@
 
 " Folding:
 function! minimd#MarkdownLevel()
-    if getline(v:lnum) =~ '^# .*$'
+    let theline = getline(v:lnum)
+    let nextline = getline(v:lnum+1)
+    if theline =~ '^# '
         return ">1"
-    endif
-    if getline(v:lnum) =~ '^## .*$'
+    elseif theline =~ '^## '
         return ">2"
-    endif
-    if getline(v:lnum) =~ '^### .*$'
+    elseif theline =~ '^### '
         return ">3"
-    endif
-    if getline(v:lnum) =~ '^#### .*$'
+    elseif theline =~ '^#### '
         return ">4"
-    endif
-    if getline(v:lnum) =~ '^##### .*$'
+    elseif theline =~ '^##### '
         return ">5"
-    endif
-    if getline(v:lnum) =~ '^###### .*$'
+    elseif theline =~ '^###### '
         return ">6"
+    else
+        return "="
     endif
-	if getline(v:lnum) =~ '^[^-=].\+$' && getline(v:lnum+1) =~ '^=\+$'
-		return ">1"
-	endif
-	if getline(v:lnum) =~ '^[^-=].\+$' && getline(v:lnum+1) =~ '^-\+$'
-		return ">2"
-	endif
-    return "="
 endfunction
 
 " Task Toggling:

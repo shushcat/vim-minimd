@@ -23,8 +23,8 @@ syn region String start=/`/ end=/`/
 " Code Blocks:
 syn region String start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
 
-"syn region String start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
-" Block Quotes:
+syn region String start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
+"" Block Quotes:
 syn match Comment /^>.*\n\(.*\n\@<!\n\)*/ skipnl
 " Ignored Section:
 syn region Function start=/<!--/ end=/-->/
@@ -32,9 +32,7 @@ syn region Function start=/<!--/ end=/-->/
 syn match Comment /\s\s$/
 
 " Headings:
-syn region Header start="^##*" end="\($\|#\+\)"
-syn match  Header /^.\+\n=\+$/
-syn match  Header /^.\+\n-\+$/
+syn region Header start="^##*" end="$"
 
 " Inline Footnotes:
 syn region Comment start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
@@ -48,7 +46,7 @@ syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
 
 " Links:
 " TODO Make the match non-greedy.
-"syn region Comment start="\[" skip="\](" end=")"
+syn region Comment start="\[" skip="\](" end=")"
 
 " Math:
 " Inline:

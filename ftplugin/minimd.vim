@@ -11,12 +11,12 @@ if !exists("g:minimd_folding_disabled")
   setlocal foldexpr=minimd#MarkdownLevel()
   setlocal foldmethod=expr
   setlocal foldenable
-  setlocal foldlevel=0
+  setlocal foldlevel=6
   setlocal foldcolumn=0
   set foldopen-=search
 endif
-nmap <silent> <Space> za
-vmap <silent> <Space> za
+"nmap <silent> <Space> za
+"vmap <silent> <Space> za
 
 " Formatting:
 setlocal formatoptions=1
