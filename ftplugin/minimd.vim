@@ -15,8 +15,16 @@ if !exists("g:minimd_folding_disabled")
   setlocal foldcolumn=0
   set foldopen-=search
 endif
+<<<<<<< HEAD
 "nmap <silent> <Space> za
 "vmap <silent> <Space> za
+=======
+
+nmap <silent> <Space> za
+vmap <silent> <Space> za
+nmap <silent> z<Space> :call minimd#CycleFolding()<CR>
+vmap <silent> z<Space> :call minimd#CycleFolding()<CR>
+>>>>>>> 5f9dcb01c8a54a40ffe2362e3ca253dc94715d4d
 
 " Formatting:
 setlocal formatoptions=1
@@ -38,21 +46,33 @@ setlocal formatoptions-=o
 setlocal formatoptions-=2
 setlocal formatoptions+=n
 setlocal nocindent
+setlocal number
+setlocal numberwidth=6
 setlocal shiftwidth=4
 
 " Headers:
-nnoremap <silent> <TAB> :call minimd#HeaderNext()<CR>
+nmap <silent> <Tab> :call minimd#HeaderNext()<CR>
 function! minimd#HeaderNext ()
     normal! ^
     /^\s*#
 endfunction
-nnoremap <silent> <S-TAB> :call minimd#HeaderPrev()<CR>
+nmap <silent> <BS> :call minimd#HeaderPrev()<CR>
 function! minimd#HeaderPrev ()
     normal! ^
     ?^\s*#
 endfunction
 nnoremap <silent> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent> - :call minimd#DemoteHeader()<CR>
+
+" Highlights:
+highlight Folded ctermbg=black ctermfg=darkgrey
+highlight FoldColumn ctermbg=black ctermfg=darkgrey
+highlight LineNr ctermfg=darkgrey
+highlight NonText ctermfg=black
+highlight Folded guibg=black guifg=darkgrey
+highlight FoldColumn guibg=black guifg=darkgrey
+highlight LineNr guifg=darkgrey
+highlight NonText guifg=black
 
 " Motion:
 nmap j gj
@@ -77,10 +97,7 @@ vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 " Highlight Unfinished Tasks:
 nnoremap <silent> <Leader>t %/^\s*- \[ \].*$<CR>
 
-" Word Count: (TODO integrate live wordcount function for status line)
-nmap <Leader>wc :call minimd#WordCount()<CR>
-function! minimd#WordCount ()
-    exec '!wc -w "%"'
-endfunction
+" Word Count:
+set statusline=%<%f\ wc:%{minimd#WordCount()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 let g:minimd_plugin_loaded = 1

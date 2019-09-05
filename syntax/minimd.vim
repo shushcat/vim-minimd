@@ -31,8 +31,14 @@ syn region Function start=/<!--/ end=/-->/
 " Trailing Spaces:
 syn match Comment /\s\s$/
 
+<<<<<<< HEAD
 " Headings:
 syn region Header start="^##*" end="$"
+=======
+" Headers:
+syn region Header start="^##*" end="\($\|#\+\)"
+hi Header cterm=bold term=bold gui=bold
+>>>>>>> 5f9dcb01c8a54a40ffe2362e3ca253dc94715d4d
 
 " Inline Footnotes:
 syn region Comment start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
@@ -49,12 +55,7 @@ syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
 syn region Comment start="\[" skip="\](" end=")"
 
 " Math:
-" Inline:
 syn match Operator     "\ $\S*\$"
-" Block:
 syn region Operator start=/\$\$/ end=/\$\$/ " display math
-
-" Bold Headers:
-hi Header cterm=bold term=bold gui=bold
 
 let b:current_syntax = "minimd"
