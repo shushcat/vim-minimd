@@ -7,24 +7,19 @@ if exists("g:minimd_plugin_loaded")
 endif
 
 " Folding:
-if !exists("g:minimd_folding_disabled")
-  setlocal foldexpr=minimd#MarkdownLevel()
-  setlocal foldmethod=expr
-  setlocal foldenable
-  setlocal foldlevel=6
-  setlocal foldcolumn=0
-  set foldopen-=search
-endif
-<<<<<<< HEAD
-"nmap <silent> <Space> za
-"vmap <silent> <Space> za
-=======
+"if !exists("g:minimd_folding_disabled")
+"  setlocal foldexpr=minimd#MarkdownLevel()
+"  setlocal foldmethod=expr
+"  setlocal foldenable
+"  setlocal foldlevel=6
+"  setlocal foldcolumn=0
+"  set foldopen-=search
+"endif
 
 nmap <silent> <Space> za
 vmap <silent> <Space> za
 nmap <silent> z<Space> :call minimd#CycleFolding()<CR>
 vmap <silent> z<Space> :call minimd#CycleFolding()<CR>
->>>>>>> 5f9dcb01c8a54a40ffe2362e3ca253dc94715d4d
 
 " Formatting:
 setlocal formatoptions=1
@@ -98,6 +93,7 @@ vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 nnoremap <silent> <Leader>t %/^\s*- \[ \].*$<CR>
 
 " Word Count:
-set statusline=%<%f\ wc:%{minimd#WordCount()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+let b:word_count = minimd#UpdateWordCount()
+set statusline=%<%f\ wc:%{minimd#ReturnWordCount()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
 
 let g:minimd_plugin_loaded = 1

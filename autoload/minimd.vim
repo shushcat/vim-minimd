@@ -5,10 +5,8 @@
 " Folding:
 function! minimd#MarkdownLevel()
     let theline = getline(v:lnum)
-    let nextline = getline(v:lnum+1)
     if theline =~ '^# '
         return ">1"
-<<<<<<< HEAD
     elseif theline =~ '^## '
         return ">2"
     elseif theline =~ '^### '
@@ -21,19 +19,6 @@ function! minimd#MarkdownLevel()
         return ">6"
     else
         return "="
-=======
-      elseif getline(v:lnum) =~ '^## .*$'
-        return ">2"
-      elseif getline(v:lnum) =~ '^### .*$'
-        return ">3"
-      elseif getline(v:lnum) =~ '^#### .*$'
-        return ">4"
-      elseif getline(v:lnum) =~ '^##### .*$'
-        return ">5"
-      elseif getline(v:lnum) =~ '^###### .*$'
-        return ">6"
-      else
-        return "="
     endif
 endfunction
 function! minimd#CycleFolding()
@@ -41,7 +26,6 @@ function! minimd#CycleFolding()
       setlocal foldlevel=0
     else
       setlocal foldlevel=6
->>>>>>> 5f9dcb01c8a54a40ffe2362e3ca253dc94715d4d
     endif
 endfunction
 
@@ -88,7 +72,10 @@ function! minimd#DemoteHeader()
 endfunction
 
 " Word Count:
-function! minimd#WordCount()
+function! minimd#ReturnWordCount()
+  return b:word_count
+endfunction
+function! minimd#UpdateWordCount()
    let s:old_status = v:statusmsg
    let position = getpos(".")
    exe ":silent normal g\<c-g>"
@@ -99,6 +86,8 @@ function! minimd#WordCount()
      let v:statusmsg = s:old_status
    end
    call setpos('.', position)
-   return s:word_count
+   let b:word_count = s:word_count
 endfunction
-
+autocmd InsertLeave * call minimd#UpdateWordCount()
+autocmd TextChanged * call minimd#UpdateWordCount()
+autocmd BufEnter * call minimd#UpdateWordCount()
