@@ -11,12 +11,6 @@ function! minimd#MarkdownLevel()
         return ">2"
     elseif theline =~ '^### '
         return ">3"
-    elseif theline =~ '^#### '
-        return ">4"
-    elseif theline =~ '^##### '
-        return ">5"
-    elseif theline =~ '^###### '
-        return ">6"
     else
         return "="
     endif
@@ -25,7 +19,7 @@ function! minimd#CycleFolding()
     if &foldlevel
       setlocal foldlevel=0
     else
-      setlocal foldlevel=6
+      setlocal foldlevel=3
     endif
 endfunction
 
