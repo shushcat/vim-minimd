@@ -7,14 +7,14 @@ if exists("g:minimd_plugin_loaded")
 endif
 
 " Folding:
-"if !exists("g:minimd_folding_disabled")
-"  setlocal foldexpr=minimd#MarkdownLevel()
-"  setlocal foldmethod=expr
-"  setlocal foldenable
-"  setlocal foldlevel=6
-"  setlocal foldcolumn=0
-"  set foldopen-=search
-"endif
+if !exists("g:minimd_folding_disabled")
+  setlocal foldexpr=minimd#MarkdownLevel()
+  setlocal foldmethod=expr
+  setlocal foldenable
+  setlocal foldlevel=6
+  setlocal foldcolumn=0
+  set foldopen-=search
+endif
 
 nmap <silent> <Space> za
 vmap <silent> <Space> za
@@ -49,12 +49,12 @@ setlocal shiftwidth=4
 nmap <silent> <Tab> :call minimd#HeaderNext()<CR>
 function! minimd#HeaderNext ()
     normal! ^
-    /^\s*#
+    /^\s*#\+\s
 endfunction
 nmap <silent> <BS> :call minimd#HeaderPrev()<CR>
 function! minimd#HeaderPrev ()
     normal! ^
-    ?^\s*#
+    ?^\s*#\+\s
 endfunction
 nnoremap <silent> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent> - :call minimd#DemoteHeader()<CR>
