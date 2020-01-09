@@ -2,48 +2,30 @@
 
 ## Synopsis
 
-A markdown syntax and filetype plugin for vim which aims to make writing and outlining pleasant.
+A [Markdown](https://commonmark.org/) syntax and filetype plugin for Vim which aims to make writing and outlining pleasant.
 
-- Navigation between and manipulation of headers is fast and easy
-- Only headers, list items, citations, and code are highlighted
-- Minimal configuration requirements
+- Jumping between and folding headers is fast
+- There isn't very much highlighting
+- Complete lack of configurability
 
 ## Usage
 
-### Headers
+| Key         | Action                                 |
+| ----------- | -------------------------------------- |
+| `Space`     | Fold or unfold current header (alias   |
+|             | for `za`---see `:h folding`)           |
+| ----------- | -------------------------------------- |
+| `Tab`       | Next header                            |
+| `Shift-Tab` | Previous header                        |
+| ----------- | -------------------------------------- |
+| `=`         | Promote header                         |
+| `-`         | Demote header                          |
+| ----------- | -------------------------------------- |
+| `Enter`     | Add a checkbox to bulleted or numbered |
+|             | list items, then toggle the checkboxes |
+|             | between `[ ]` and `[X]`                |
 
-#### Folding
-
-| Key       | Action                          |
-| --------- | ------------------------------- |
-| `<Space>` | Fold or unfold current header   |
-
-For more information, see `:h folding`.
-
-#### Jumping
-
-| Key       | Action          |
-| --------- | --------------- |
-| `<Tab>`   | Next header     |
-| `<S-Tab>` | Previous header |
-
-#### Promotion and Demotion
-
-| Key |  Action        |
-| --- | -------------- |
-| `=` | Promote header |
-| `-` | Demote header  |
-
-
-### Tasks
-
-| Key       |  Action                       |
-| --------- | ----------------------------- |
-| `<CR>`    | Toggle task completion status |
-
-This works with list items written in Github Style Markdown.  Unnumbered list items are converted to tasks as in `- ` to `- [ ] `, and tasks are toggled between `- [ ] ` and `- [X] `.
-
-### Pandoc Integration
+## Pandoc Integration
 
 #### Keybindings
 
@@ -54,8 +36,15 @@ This works with list items written in Github Style Markdown.  Unnumbered list it
 
 #### Pandoc Options
 
-Options can be passed to Pandoc, either globally or per-filetype, by defining `g:pandoc_options`, `g:pandoc_options_html`, and `g:pandoc_options_latex` in your `.vimrc`.  So, for example, if you would like to number your headers and specify a bibliography, you might write:
+Options can be passed to Pandoc, both globally and per-filetype, by defining `g:pandoc_options`, `g:pandoc_options_html`, or `g:pandoc_options_latex` in your `vimrc`.  Options are additive; all `g:pandoc_options` and `g:pandoc_options_html` options will be used when exporting to HTML.  So, for example, if you wanted to number your headers and use your very favorite bibliography, you might include the line
 
     let g:pandoc_options = "-N --bibliography=~/my.bib"
 
-Where `my.bib` is a BibTeX bibliography in your home directory.
+in your `vimrc`.
+
+## To Do
+
+- [ ] Skip comments in code blocks when navigating and folding
+- [ ] Ensure that syntax is preserved when toggling [Goyo](https://github.com/junegunn/goyo.vim)
+- [ ] Make sure things get their highlighting when they're inside other things
+- [ ] Revise the Pandoc interface so that it does not leave me feeling quite so dissatisfied
