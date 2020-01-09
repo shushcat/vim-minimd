@@ -51,7 +51,7 @@ function! minimd#HeaderNext ()
     normal! ^
     /^\s*#\+\s
 endfunction
-nmap <silent> <BS> :call minimd#HeaderPrev()<CR>
+nmap <silent> <S-Tab> :call minimd#HeaderPrev()<CR>
 function! minimd#HeaderPrev ()
     normal! ^
     ?^\s*#\+\s

@@ -10,20 +10,22 @@ syn spell toplevel
 syn case ignore
 syn sync linebreaks=1
 
-" Bullet Points:
-syn match  Identifier "^\s*[-*+]\s\+"
-" Check Boxes:
-syn match  Identifier "^\s*- \[ \]\s\+"
-syn match  Comment "^\s*- \[X\]\s.*$"
-" Numbered Lists:
-syn match  Identifier "^\s*\d\+\.\s\+"
+" Lists:
+syntax match  listItem "^\s*\(-\|\d\+\.\)\s.*$" contains=listMarker
+highlight default link listItem Normal
+syntax match  listMarker "^\s*\(-\|\d\+\.\)\s" contained containedin=listItem
+highlight default link listMarker LineNr
+syntax match  taskBox "\[ \]" contained containedin=listItem
+highlight default link taskBox Todo
+syntax match  doneBox "\[X\]" contained containedin=listItem
+highlight default link doneBox Comment
 
 " Inline Code:
 syn region String start=/`/ end=/`/
 " Code Blocks:
 syn region String start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
+syn region String start=/```.*$/ end=/^```$/
 
-syn region String start=/\s*``[^`]*/ skip=/`/ end=/[^`]*``\s*/
 "" Block Quotes:
 syn match Comment /^>.*\n\(.*\n\@<!\n\)*/ skipnl
 " Ignored Section:
@@ -33,22 +35,21 @@ syn match Comment /\s\s$/
 
 " Headers:
 syn region Header start="^##*" end="\($\|#\+\)"
-" syn region Header start="^##*" end="$"
 hi Header cterm=bold term=bold gui=bold
 
 " Inline Footnotes:
-syn region Comment start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
+syn region PreProc start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
 
 " Pandoc Citations:
-syn region Comment start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
-syn region Comment start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
+syn region PreProc start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
+syn region PreProc start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
 
 " Pandoc Headers:
-syn match Identifier /\%^\(%.*\n\)\{1,3}$/ skipnl
+syn region Title start=/^---$/ end=/^---$/
 
 " Links:
-" TODO Make the match non-greedy.
-syn region Comment start="\[" skip="\](" end=")"
+syn region PreProc start="!\[" skip="\](" end=")\+"
+syn region PreProc start="\[" skip="\](" end=")\+"
 
 " Math:
 syn match Operator     "\ $\S*\$"
