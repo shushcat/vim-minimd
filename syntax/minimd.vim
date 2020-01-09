@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language:     Minimal Markdown
-" Author:       John O Brickley
+" Author:       J. O. Brickley
 
 if exists("b:current_syntax")
     finish

@@ -1,6 +1,6 @@
 " Vim filetype plugin
 " Language:     Minimal Markdown
-" Author:       John O. Brickley
+" Author:       J. O. Brickley
 
 if exists("g:minimd_plugin_loaded")
     finish

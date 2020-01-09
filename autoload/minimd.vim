@@ -1,6 +1,6 @@
 " Vim plugin file
 " Language:     Minimal Markdown
-" Author:       John O Brickley
+" Author:       J. O. Brickley
 
 " Folding:
 function! minimd#MarkdownLevel()
