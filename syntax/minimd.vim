@@ -20,14 +20,16 @@ highlight default link taskBox Todo
 syntax match  doneBox "\[X\]" contained containedin=listItem
 highlight default link doneBox Comment
 
-" Inline Code:
-syn region String start=/`/ end=/`/
-" Code Blocks:
-syn region String start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
-syn region String start=/```.*$/ end=/^```$/
+" Code:
+syntax match inlineCode "`.*`"  containedin=listItem
+highlight default link inlineCode String
+syntax region blockCode start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
+syntax region blockCode start=/^```.*$/ end=/^```$/
+highlight default link blockCode String
 
-"" Block Quotes:
-syn match Comment /^>.*\n\(.*\n\@<!\n\)*/ skipnl
+" Block Quotes:
+syntax match blockQuote /^>.*\n\(.*\n\@<!\n\)*/ skipnl
+highlight default link blockQuote Comment
 " Ignored Section:
 syn region Function start=/<!--/ end=/-->/
 " Trailing Spaces:

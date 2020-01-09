@@ -1,12 +1,11 @@
 # minimd
 
-## Synopsis
-
 A [Markdown](https://commonmark.org/) syntax and filetype plugin for Vim which aims to make writing and outlining pleasant.
 
 - Jumping between and folding headers is fast
 - There isn't very much highlighting
 - Complete lack of configurability
+- The complexity of this plugin is strictly limited by my unwillingness to become skilled at Vimscript
 
 ## Usage
 
@@ -43,5 +42,4 @@ in your `vimrc`.
 
 - [ ] Skip comments in code blocks when navigating and folding
 - [ ] Ensure that syntax is preserved when toggling [Goyo](https://github.com/junegunn/goyo.vim)
-- [ ] Make sure things get their highlighting when they're inside other things
 - [ ] Revise the Pandoc interface so that it does not leave me feeling quite so dissatisfied
