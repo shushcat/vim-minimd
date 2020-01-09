@@ -14,13 +14,10 @@ A [Markdown](https://commonmark.org/) syntax and filetype plugin for Vim which a
 | ----------- | -------------------------------------- |
 | `Space`     | Fold or unfold current header (alias   |
 |             | for `za`---see `:h folding`)           |
-| ----------- | -------------------------------------- |
 | `Tab`       | Next header                            |
 | `Shift-Tab` | Previous header                        |
-| ----------- | -------------------------------------- |
 | `=`         | Promote header                         |
 | `-`         | Demote header                          |
-| ----------- | -------------------------------------- |
 | `Enter`     | Add a checkbox to bulleted or numbered |
 |             | list items, then toggle the checkboxes |
 |             | between `[ ]` and `[X]`                |
