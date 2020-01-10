@@ -39,15 +39,18 @@ syn match Comment /\s\s$/
 syn region Header start="^##*" end="\($\|#\+\)"
 hi Header cterm=bold term=bold gui=bold
 
-" Inline Footnotes:
+" Reference Material:
 syn region PreProc start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
 
 " Pandoc Citations:
-syn region PreProc start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
-syn region PreProc start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
+syn region citation start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
+syn region citation start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
+highlight default link citation PreProc
 
-" Pandoc Headers:
-syn region Title start=/^---$/ end=/^---$/
+" Title Metadata Blocks:
+syntax region titleBlock start=/\%1l^---$/ end=/^\(---\|...\)$/
+syntax region titleBlock start=/\%1l%/ end=/\(^$\|^\(%\|\s\)\@!\)/
+highlight default link titleBlock Header
 
 " Links:
 syn region PreProc start="!\[" skip="\](" end=")\+"
