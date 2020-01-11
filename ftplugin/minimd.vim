@@ -42,7 +42,7 @@ setlocal formatoptions-=2
 setlocal formatoptions+=n
 setlocal nocindent
 setlocal number
-setlocal numberwidth=6
+setlocal numberwidth=10
 setlocal shiftwidth=4
 
 " Headers:
