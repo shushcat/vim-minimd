@@ -6,9 +6,9 @@ if exists("b:current_syntax")
     finish
 endif
 
-syn spell toplevel
-syn case ignore
-syn sync linebreaks=1
+syntax spell toplevel
+syntax case ignore
+syntax sync linebreaks=1
 
 " Lists:
 syntax match  listItem "^\s*\(-\|\d\+\.\)\s.*$" contains=listMarker
@@ -31,20 +31,20 @@ highlight default link blockCode String
 syntax match blockQuote /^>.*\n\(.*\n\@<!\n\)*/ skipnl
 highlight default link blockQuote Comment
 " Ignored Section:
-syn region Function start=/<!--/ end=/-->/
+syntax region Function start=/<!--/ end=/-->/
 " Trailing Spaces:
-syn match Comment /\s\s$/
+syntax match Comment /\s\s$/
 
 " Headers:
-syn region Header start="^##*" end="\($\|#\+\)"
-hi Header cterm=bold term=bold gui=bold
+syntax region mdHeader start="^##*" end="\($\|#\+\)"
+highlight default link mdHeader Title
 
 " Reference Material:
-syn region PreProc start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
+syntax region PreProc start=/\^\[/ skip=/\[[^]]*\]/ end=/\]/
 
 " Pandoc Citations:
-syn region citation start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
-syn region citation start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
+syntax region citation start="[ ,.?!(\[\n]@" end="[ ,.?!)\]\n]"
+syntax region citation start="[ ,.?!(\[\n][-]@" end="[ ,.?!)\]\n]"
 highlight default link citation PreProc
 
 " Title Metadata Blocks:
@@ -53,11 +53,11 @@ syntax region titleBlock start=/\%1l%/ end=/\(^$\|^\(%\|\s\)\@!\)/
 highlight default link titleBlock Header
 
 " Links:
-syn region PreProc start="!\[" skip="\](" end=")\+"
-syn region PreProc start="\[" skip="\](" end=")\+"
+syntax region PreProc start="!\[" skip="\](" end=")\+"
+syntax region PreProc start="\[" skip="\](" end=")\+"
 
 " Math:
-syn match Operator     "\ $\S*\$"
-syn region Operator start=/\$\$/ end=/\$\$/ " display math
+syntax match Operator     "\ $\S*\$"
+syntax region Operator start=/\$\$/ end=/\$\$/ " display math
 
 let b:current_syntax = "minimd"
