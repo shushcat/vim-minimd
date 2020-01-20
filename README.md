@@ -42,4 +42,3 @@ in your `vimrc`.
 
 - [ ] Skip comments in code blocks when navigating and folding
 - [ ] Revise the Pandoc interface so that it does not leave me feeling quite so dissatisfied
-- [ ] Don't highlight intermediate text when there are two or more strings of inline code on a line
