@@ -25,6 +25,7 @@ syntax region inlineCode start=/`/ end=/\(`\|\n\)/  containedin=listItem
 highlight default link inlineCode String
 syntax region blockCode start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
 syntax region blockCode start=/^```.*$/ end=/^```$/
+syntax region blockCode start=/^\~\~\~.*$/ end=/^\~\~\~$/
 highlight default link blockCode String
 
 " Block Quotes:
