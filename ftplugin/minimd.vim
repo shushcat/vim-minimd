@@ -58,16 +58,6 @@ endfunction
 nnoremap <silent> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 
-" Highlights:
-" highlight Folded ctermbg=black ctermfg=darkgrey
-" highlight FoldColumn ctermbg=darkgrey ctermfg=grey
-" highlight LineNr ctermfg=darkgrey
-" highlight NonText ctermfg=black
-" highlight Folded guibg=black guifg=darkgrey
-" highlight FoldColumn guibg=black guifg=darkgrey
-" highlight LineNr guifg=darkgrey
-" highlight NonText guifg=black
-
 " Motion:
 nmap j gj
 nmap k gk
