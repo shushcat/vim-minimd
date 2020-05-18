@@ -2,10 +2,6 @@
 " Language:     Minimal Markdown
 " Author:       J. O. Brickley
 
-if exists("g:minimd_plugin_loaded")
-    finish
-endif
-
 " Folding:
 if !exists("g:minimd_folding_disabled")
   setlocal foldexpr=minimd#MarkdownLevel()
@@ -14,6 +10,10 @@ if !exists("g:minimd_folding_disabled")
   setlocal foldlevel=6
   setlocal foldcolumn=0
   set foldopen-=search
+endif
+
+if exists("g:minimd_plugin_loaded")
+    finish
 endif
 
 nmap <silent> <Space> za
@@ -42,7 +42,6 @@ setlocal formatoptions-=2
 setlocal formatoptions+=n
 setlocal nocindent
 setlocal number
-setlocal numberwidth=10
 setlocal shiftwidth=4
 
 " Headers:
@@ -60,14 +59,14 @@ nnoremap <silent> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 
 " Highlights:
-highlight Folded ctermbg=black ctermfg=darkgrey
-highlight FoldColumn ctermbg=black ctermfg=darkgrey
-highlight LineNr ctermfg=darkgrey
-highlight NonText ctermfg=black
-highlight Folded guibg=black guifg=darkgrey
-highlight FoldColumn guibg=black guifg=darkgrey
-highlight LineNr guifg=darkgrey
-highlight NonText guifg=black
+" highlight Folded ctermbg=black ctermfg=darkgrey
+" highlight FoldColumn ctermbg=darkgrey ctermfg=grey
+" highlight LineNr ctermfg=darkgrey
+" highlight NonText ctermfg=black
+" highlight Folded guibg=black guifg=darkgrey
+" highlight FoldColumn guibg=black guifg=darkgrey
+" highlight LineNr guifg=darkgrey
+" highlight NonText guifg=black
 
 " Motion:
 nmap j gj
