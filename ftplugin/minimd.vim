@@ -72,19 +72,6 @@ nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 nmap j gj
 nmap k gk
 
-" Pandoc Export:
-if !exists("g:pandoc_options")
-    let g:pandoc_options = ""
-endif
-if !exists("g:pandoc_options_html")
-    let g:pandoc_options_html = ""
-endif
-if !exists("g:pandoc_options_latex")
-    let g:pandoc_options_latex = ""
-endif
-:nmap <LocalLeader>ch :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options g:pandoc_options_html "-f markdown -t html" "\"%\"" "> ./out.html"'<CR><CR>
-:nmap <silent> <LocalLeader>cp :<C-\>e'execute '.string(getcmdline()).'."!pandoc " g:pandoc_options g:pandoc_options_latex "-o ./out.pdf " "\"%\""'<CR><CR>
-
 " Tasks:
 nmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
