@@ -45,16 +45,8 @@ setlocal number
 setlocal shiftwidth=4
 
 " Headers:
-nmap <silent> <Tab> :call minimd#HeaderNext()<CR>
-function! minimd#HeaderNext ()
-    normal! ^
-    /^\s*#\+\s
-endfunction
-nmap <silent> <S-Tab> :call minimd#HeaderPrev()<CR>
-function! minimd#HeaderPrev ()
-    normal! ^
-    ?^\s*#\+\s
-endfunction
+nmap <silent> <Tab> :call minimd#HeaderMotion('F')<CR>
+nmap <silent> <S-Tab> :call minimd#HeaderMotion('B')<CR>
 nnoremap <silent> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent> - :call minimd#DemoteHeader()<CR>
 

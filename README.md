@@ -27,5 +27,5 @@ If you would like to export your Markdown file in another format, [Pandoc](https
 
 ## To Do
 
-- [ ] Skip comments in code blocks when navigating and folding
+- [ ] Base folds on syntax
 - [ ] Non-greedy link highlights for multiple links on a single line

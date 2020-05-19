@@ -65,6 +65,25 @@ function! minimd#DemoteHeader()
     endif
 endfunction
 
+" Header Motion:
+function! minimd#HeaderMotion(dir)
+  let l:synID1 = synIDtrans(hlID("mdHeader"))
+  while 1
+    let l:pos1 = getpos(".")
+    if a:dir ==# 'B'
+      execute "normal! k"
+    else
+      execute "normal! j"
+    endif
+    let l:pos2 = getpos(".")
+    let l:synID2 = synIDtrans(synID(line("."), 1, 1))
+    if  l:synID1 == l:synID2 || l:pos1 == l:pos2
+      call setpos('.', l:pos2)
+      break
+    endif
+  endwhile
+endfunction
+
 " Word Count:
 function! minimd#ReturnWordCount()
   return b:word_count
