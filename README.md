@@ -11,15 +11,12 @@ A [Markdown](https://commonmark.org/) syntax and filetype plugin for Vim that ai
 
 | Key         | Action                                 |
 | ----------- | -------------------------------------- |
-| `Space`     | Fold or unfold current header (alias   |
-|             | for `za`---see `:h folding`)           |
+| `Space`     | Fold or unfold the current header      |
 | `Tab`       | Next header                            |
 | `Shift-Tab` | Previous header                        |
 | `=`         | Promote header                         |
 | `-`         | Demote header                          |
-| `Enter`     | Add a checkbox to bulleted or numbered |
-|             | list items, then toggle the checkboxes |
-|             | between `[ ]` and `[X]`                |
+| `Enter`     | Add and toggle checkboxes in lists     |
 
 ## Exporting with Pandoc
 
@@ -27,5 +24,4 @@ If you would like to export your Markdown file in another format, [Pandoc](https
 
 ## To Do
 
-- [ ] Base folds on syntax
 - [ ] Non-greedy link highlights for multiple links on a single line

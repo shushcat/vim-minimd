@@ -3,23 +3,14 @@
 " Author:       J. O. Brickley
 
 " Folding:
-if !exists("g:minimd_folding_disabled")
-  setlocal foldexpr=minimd#MarkdownLevel()
-  setlocal foldmethod=expr
-  setlocal foldenable
-  setlocal foldlevel=6
-  setlocal foldcolumn=0
-  set foldopen-=search
-endif
+setlocal foldmethod=manual
+set foldopen-=search
 
 if exists("g:minimd_plugin_loaded")
     finish
 endif
 
-nmap <silent> <Space> za
-vmap <silent> <Space> za
-nmap <silent> z<Space> :call minimd#CycleFolding()<CR>
-vmap <silent> z<Space> :call minimd#CycleFolding()<CR>
+nmap <silent> <Space> :call minimd#ManualFold()<CR>
 
 " Formatting:
 setlocal formatoptions=1

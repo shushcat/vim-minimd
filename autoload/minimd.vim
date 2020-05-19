@@ -3,24 +3,22 @@
 " Author:       J. O. Brickley
 
 " Folding:
-function! minimd#MarkdownLevel()
-    let theline = getline(v:lnum)
-    if theline =~ '^# '
-        return ">1"
-    elseif theline =~ '^## '
-        return ">2"
-    elseif theline =~ '^### '
-        return ">3"
-    else
-        return "="
+function! minimd#ManualFold()
+  let l:pos1 = getpos(".")
+  if foldlevel(l:pos1[1]) != 0
+    execute 'silent! normal! zd'
+  else
+    let l:synID1 = synIDtrans(hlID("mdHeader"))
+    let l:synID2 = synIDtrans(synID(line("."), 1, 1))
+    if l:synID1 != l:synID2
+      call minimd#HeaderMotion('B')
+      let l:pos1 = getpos(".")
     endif
-endfunction
-function! minimd#CycleFolding()
-    if &foldlevel
-      setlocal foldlevel=0
-    else
-      setlocal foldlevel=3
-    endif
+    call minimd#HeaderMotion('F')
+    let l:pos2 = getpos(".")
+    execute l:pos1[1] ',' l:pos2[1]-1 'fold'
+    call setpos('.', l:pos1)
+  endif
 endfunction
 
 " Task Toggling:
