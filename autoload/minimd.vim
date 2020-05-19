@@ -16,7 +16,11 @@ function! minimd#ManualFold()
     endif
     call minimd#HeaderMotion('F')
     let l:pos2 = getpos(".")
-    execute l:pos1[1] ',' l:pos2[1]-1 'fold'
+    if l:pos2[1] == line('$')
+      execute l:pos1[1] ',' l:pos2[1] 'fold'
+    else
+      execute l:pos1[1] ',' l:pos2[1]-1 'fold'
+    endif
     call setpos('.', l:pos1)
   endif
 endfunction
