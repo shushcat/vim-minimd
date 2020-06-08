@@ -13,19 +13,20 @@ endif
 nmap <silent> <Space> :call minimd#ManualFold()<CR>
 
 " Formatting:
-setlocal formatoptions=1
-" TODO Recognize dash and plus lists as well.
-"setlocal formatlistpat="^\s*\d\+[\]:.)}\t ]\s*"
+setlocal formatoptions+=1tcqljn 
+setlocal formatoptions-=ro
+setlocal formatlistpat="^\s*\(-\|*\|+\|\d\+\.\)\s"
 setlocal wrap
 setlocal wrapmargin=0
 setlocal textwidth=0
 setlocal nolist
 setlocal linebreak
-set breakat=\ ^I
+setlocal breakat&vim
 setlocal display=lastline
 setlocal autoindent
 setlocal nosmartindent
-setlocal comments=""
+setlocal comments=fb:*,fb:+,fb:-,n:>
+setlocal commentstring=<!--%s-->
 setlocal formatoptions-=c
 setlocal formatoptions-=r
 setlocal formatoptions-=o
@@ -48,8 +49,6 @@ nmap k gk
 " Tasks:
 nmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
-" Highlight Unfinished Tasks:
-nnoremap <silent> <Leader>t %/^\s*- \[ \].*$<CR>
 
 " Word Count:
 let b:word_count = minimd#UpdateWordCount()
