@@ -14,10 +14,11 @@ syntax sync linebreaks=1
 syntax match  listItem "^\s*\(-\|*\|+\|\d\+\.\)\s.*$"
 highlight default link listItem Normal
 syntax match  listMarker "^\s*\(-\|*\|+\|\d\+\.\)\s" contained containedin=listItem
+syntax match  listMarker "^\s*\(-\|*\|+\|\d\+\.\)\s\(\[ \]\|\[X\]\)" contained containedin=listItem
 highlight default link listMarker LineNr
-syntax match  taskBox "\[ \]" contained containedin=listItem
+syntax match  taskBox "\[ \]" contained containedin=listMarker
 highlight default link taskBox Todo
-syntax match  doneBox "\[X\]" contained containedin=listItem
+syntax match  doneBox "\[X\]" contained containedin=listMarker
 highlight default link doneBox Comment
 
 " Code:
