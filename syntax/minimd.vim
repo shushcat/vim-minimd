@@ -11,7 +11,7 @@ syntax case ignore
 syntax sync linebreaks=1
 
 " Lists:
-syntax match  listItem "^\s*\(-\|*\|+\|\d\+\.\)\s.*$" contains=listMarker
+syntax match  listItem "^\s*\(-\|*\|+\|\d\+\.\)\s.*$"
 highlight default link listItem Normal
 syntax match  listMarker "^\s*\(-\|*\|+\|\d\+\.\)\s" contained containedin=listItem
 highlight default link listMarker LineNr
@@ -46,8 +46,8 @@ syntax region titleBlock start=/\%1l%/ end=/\(^$\|^\(%\|\s\)\@!\)/
 highlight default link titleBlock Header
 
 " Brackets:
-syntax match squareBrackets "\["
-syntax match squareBrackets "\]"
+syntax match squareBrackets "\[" containedin=listItem
+syntax match squareBrackets "\]" containedin=listItem
 highlight default link squareBrackets PreProc
 
 " Flag:
