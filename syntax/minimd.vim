@@ -51,8 +51,4 @@ syntax match squareBrackets "\[" containedin=listItem
 syntax match squareBrackets "\]" containedin=listItem
 highlight default link squareBrackets PreProc
 
-" Flag:
-syntax match qqFlag "qq"
-highlight default link qqflag Todo
-
 let b:current_syntax = "minimd"
