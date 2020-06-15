@@ -2,14 +2,22 @@
 " Language:     Minimal Markdown
 " Author:       J. O. Brickley
 
-" Folding:
-setlocal foldmethod=manual
-set foldopen-=search
-
 if exists("g:minimd_plugin_loaded")
     finish
 endif
 
+" Folding:
+setlocal foldmethod=manual
+setlocal foldopen-=search
+setlocal foldtext=minimd#FoldText()
+function! minimd#FoldText()
+        let line = getline(v:foldstart)
+        let folded_line_num = v:foldend - v:foldstart
+        let line_text = substitute(line, '\(.\{56\}.\{-\}\)\s.*', '\1', 'g')
+        let fillcharcount = 70 - len(line_text) - len(folded_line_num)
+        return line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' Lines)'
+endfunction
+setlocal fillchars=fold:\ 
 nmap <silent> <Space> :call minimd#ManualFold()<CR>
 
 " Formatting:

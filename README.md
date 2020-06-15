@@ -24,5 +24,9 @@ If you would like to export your Markdown file to another format, [Pandoc](https
 
 ## To Do
 
+- [ ] Change folding behavior
+    - fold on unfolded header: inclusive fold of children
+    - fold on folded header: show immediate children
+- [X] Change fold appearance so that header level is obvious
 - [ ] Make sure settings, including those for the status line, don't leak
 - [ ] Conditionally trigger `syntax sync fromstart`
