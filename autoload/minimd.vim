@@ -18,24 +18,29 @@ function! minimd#ManualFold()
     call minimd#HeaderMotion('F')
     let l:pos2 = getpos(".")
     let l:pos2lvl = minimd#HeaderLevel()
-    if l:pos2[1] == line('$')
-      execute l:pos1[1] ',' l:pos2[1] 'fold'
-    else
-      while l:pos1lvl < l:pos2lvl
-        call minimd#HeaderMotion('F')
-        let l:pos3 = getpos(".")
-        execute l:pos2[1] ',' l:pos3[1]-1 'fold'
-        let l:pos2 = getpos(".")
-        let l:pos2lvl = minimd#HeaderLevel()
-      endwhile
-      execute l:pos1[1] ',' l:pos2[1]-1 'fold'
-    endif
+    while l:pos1lvl < l:pos2lvl
+      call minimd#HeaderMotion('F')
+      let l:pos3 = getpos(".")
+      call minimd#MakeFold(l:pos2[1], l:pos3[1])
+      let l:pos2 = getpos(".")
+      let l:pos2lvl = minimd#HeaderLevel()
+    endwhile
+    call minimd#MakeFold(l:pos1[1], l:pos2[1])
     call setpos('.', l:pos1)
   endif
 endfunction
+
 function! minimd#HeaderLevel()
   let l:currLine = getline(".")
   return matchend(l:currLine, '^#*')
+endfunction
+
+function! minimd#MakeFold(l1, l2)
+  if a:l2 == line('$')
+    execute a:l1 ',' a:l2 'fold'
+  else
+    execute a:l1 ',' a:l2 - 1 'fold'
+  endif
 endfunction
 
 " Task Toggling:
