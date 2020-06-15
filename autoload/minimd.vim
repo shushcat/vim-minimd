@@ -21,6 +21,10 @@ function! minimd#ManualFold()
     while l:pos1lvl < l:pos2lvl
       call minimd#HeaderMotion('F')
       let l:pos3 = getpos(".")
+      if l:pos2[1] == l:pos3[1]
+        let l:pos2[1] = l:pos2[1] + 1
+        break
+      endif
       call minimd#MakeFold(l:pos2[1], l:pos3[1])
       let l:pos2 = getpos(".")
       let l:pos2lvl = minimd#HeaderLevel()
