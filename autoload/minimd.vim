@@ -45,44 +45,44 @@ endfunction
 
 " Task Toggling:
 function! minimd#TaskToggle()
-    let b:line = getline(".")
-    let b:linenum = line(".")
-    if b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) \[ \] .*$'
-        let b:newline = substitute(b:line, '\[ \] ', '\[X\] ', "")
-        call setline(b:linenum, b:newline)
-    elseif b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) \[X\] .*$'
-        let b:newline = substitute(b:line, '\[X\] ', '\[ \] ', "")
-        call setline(b:linenum, b:newline)
-    elseif b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) .*$'
-        let b:newline = substitute(b:line, '\(^\s*\)\(-\|*\|+\|\d\+\.\)\s', '\1\2 \[ \] ', "")
-        call setline(b:linenum, b:newline)
-    endif
+  let b:line = getline(".")
+  let b:linenum = line(".")
+  if b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) \[ \] .*$'
+    let b:newline = substitute(b:line, '\[ \] ', '\[X\] ', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) \[X\] .*$'
+    let b:newline = substitute(b:line, '\[X\] ', '\[ \] ', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) .*$'
+    let b:newline = substitute(b:line, '\(^\s*\)\(-\|*\|+\|\d\+\.\)\s', '\1\2 \[ \] ', "")
+    call setline(b:linenum, b:newline)
+  endif
 endfunction
 
 " Header Promotion:
 function! minimd#PromoteHeader()
-    let b:line = getline(".")
-    let b:linenum = line(".")
-    if b:line =~ '^#* .*$'
-        let b:newline = substitute(b:line, '#', '##', "")
-        call setline(b:linenum, b:newline)
-    elseif b:line =~ '^.*$'
-        let b:newline = substitute(b:line, '^', '# ', "")
-        call setline(b:linenum, b:newline)
-    endif
+  let b:line = getline(".")
+  let b:linenum = line(".")
+  if b:line =~ '^#* .*$'
+    let b:newline = substitute(b:line, '#', '##', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^.*$'
+    let b:newline = substitute(b:line, '^', '# ', "")
+    call setline(b:linenum, b:newline)
+  endif
 endfunction
 
 " Header Demotion:
 function! minimd#DemoteHeader()
-    let b:line = getline(".")
-    let b:linenum = line(".")
-    if b:line =~ '^##\+ .*$'
-        let b:newline = substitute(b:line, '##', '#', "")
-        call setline(b:linenum, b:newline)
-    elseif b:line =~ '^# .*$'
-        let b:newline = substitute(b:line, '^# ', '', "")
-        call setline(b:linenum, b:newline)
-    endif
+  let b:line = getline(".")
+  let b:linenum = line(".")
+  if b:line =~ '^##\+ .*$'
+    let b:newline = substitute(b:line, '##', '#', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^# .*$'
+    let b:newline = substitute(b:line, '^# ', '', "")
+    call setline(b:linenum, b:newline)
+  endif
 endfunction
 
 " Header Motion:
