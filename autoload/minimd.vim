@@ -8,21 +8,34 @@ function! minimd#ManualFold()
   if foldlevel(l:pos1[1]) != 0
     execute 'silent! normal! zd'
   else
-    let l:synID1 = synIDtrans(hlID("mdHeader"))
-    let l:synID2 = synIDtrans(synID(line("."), 1, 1))
-    if l:synID1 != l:synID2
+    let l:headID = synIDtrans(hlID("mdHeader"))
+    let l:currID = synIDtrans(synID(line("."), 1, 1))
+    if l:headID != l:currID
       call minimd#HeaderMotion('B')
       let l:pos1 = getpos(".")
     endif
+    let l:pos1lvl = minimd#HeaderLevel()
     call minimd#HeaderMotion('F')
     let l:pos2 = getpos(".")
+    let l:pos2lvl = minimd#HeaderLevel()
     if l:pos2[1] == line('$')
       execute l:pos1[1] ',' l:pos2[1] 'fold'
     else
+      while l:pos1lvl != l:pos2lvl
+        call minimd#HeaderMotion('F')
+        let l:pos3 = getpos(".")
+        execute l:pos2[1] ',' l:pos3[1]-1 'fold'
+        let l:pos2 = getpos(".")
+        let l:pos2lvl = minimd#HeaderLevel()
+      endwhile
       execute l:pos1[1] ',' l:pos2[1]-1 'fold'
     endif
     call setpos('.', l:pos1)
   endif
+endfunction
+function! minimd#HeaderLevel()
+  let l:currLine = getline(".")
+  return matchend(l:currLine, '^#*')
 endfunction
 
 " Task Toggling:
