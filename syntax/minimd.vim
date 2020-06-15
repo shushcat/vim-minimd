@@ -8,7 +8,7 @@ endif
 
 syntax spell toplevel
 syntax case ignore
-syntax sync linebreaks=1
+syntax sync minlines=100
 
 " Lists:
 syntax match  listItem "^\s*\(-\|*\|+\|\d\+\.\)\s.*$"
@@ -25,8 +25,8 @@ highlight default link doneBox Comment
 syntax region inlineCode start=/`/ end=/\(`\|\n\)/  containedin=listItem
 highlight default link inlineCode String
 syntax region blockCode start=/\(\(\d\|\a\|*\).*\n\)\@<!\(^\(\s\{4,}\|\t\+\)\).*\n/ end=/.\(\n^\s*\n\)\@=/
-syntax region blockCode start=/^```.*$/ end=/^```$/
-syntax region blockCode start=/^\~\~\~.*$/ end=/^\~\~\~$/
+syntax region blockCode start=/^\s*```.*$/ end=/^\s*```$/
+syntax region blockCode start=/^\s*\~\~\~.*$/ end=/^\s*\~\~\~$/
 highlight default link blockCode String
 
 " Block Quotes:
