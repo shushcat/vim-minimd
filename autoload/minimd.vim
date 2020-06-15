@@ -21,7 +21,7 @@ function! minimd#ManualFold()
     if l:pos2[1] == line('$')
       execute l:pos1[1] ',' l:pos2[1] 'fold'
     else
-      while l:pos1lvl != l:pos2lvl
+      while l:pos1lvl < l:pos2lvl
         call minimd#HeaderMotion('F')
         let l:pos3 = getpos(".")
         execute l:pos2[1] ',' l:pos3[1]-1 'fold'
