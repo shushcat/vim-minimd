@@ -2,9 +2,10 @@
 " Language:     Minimal Markdown
 " Author:       J. O. Brickley
 
-if exists("g:minimd_plugin_loaded")
+if exists("b:minimd_plugin_loaded")
     finish
 endif
+let b:minimd_plugin_loaded = 1
 
 " Folding:
 setlocal foldmethod=manual
@@ -15,7 +16,7 @@ function! minimd#FoldText()
         let folded_line_num = v:foldend - v:foldstart
         let line_text = substitute(line, '\(.\{56\}.\{-\}\)\s.*', '\1', 'g')
         let fillcharcount = 70 - len(line_text) - len(folded_line_num)
-        return line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' Lines)'
+        return line_text . repeat('.', fillcharcount) . '(' . folded_line_num . ' Lines)'
 endfunction
 setlocal fillchars=fold:\ 
 nmap <silent> <Space> :call minimd#ManualFold()<CR>
@@ -61,5 +62,3 @@ vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 " Word Count:
 let b:word_count = minimd#UpdateWordCount()
 set statusline=%<%f\ wc:%{minimd#ReturnWordCount()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
-
-let g:minimd_plugin_loaded = 1
