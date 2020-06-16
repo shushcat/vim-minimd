@@ -11,7 +11,13 @@ function! minimd#ManualFold()
     let l:headID = synIDtrans(hlID("mdHeader"))
     let l:currID = synIDtrans(synID(line("."), 1, 1))
     if l:headID != l:currID
+      let l:rescuepos = winsaveview()
       call minimd#HeaderMotion('B')
+      let l:currID = synIDtrans(synID(line("."), 1, 1))
+      if l:headID != l:currID
+        call winrestview(l:rescuepos)
+        return
+      endif
       let l:pos1 = getpos(".")
     endif
     let l:pos1lvl = minimd#HeaderLevel()
