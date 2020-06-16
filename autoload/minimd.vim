@@ -21,10 +21,12 @@ function! minimd#ManualFold()
       let l:pos1 = getpos(".")
     endif
     let l:pos1lvl = minimd#HeaderLevel()
+    execute 'silent! normal! zd'
     call minimd#HeaderMotion('F')
     let l:pos2 = getpos(".")
     let l:pos2lvl = minimd#HeaderLevel()
     while l:pos1lvl < l:pos2lvl
+      execute 'silent! normal! zd'
       call minimd#HeaderMotion('F')
       let l:pos3 = getpos(".")
       if l:pos2[1] == l:pos3[1]
