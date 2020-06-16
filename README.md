@@ -1,6 +1,6 @@
 # minimd
 
-Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) documents in Vim.  It is mostly a simple implementation of the header visibility cycling idea from [Org Mode](https://orgmode.org/) for Emacs, which makes it easy to keep track of the contents of long documents by desplaying outlines based on the headlines in those documents.
+Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) documents in Vim.  It is mostly a simple implementation of the header visibility cycling idea from [Org Mode](https://orgmode.org/) for Emacs, which makes it easy to keep track of the contents of long documents by displaying outlines based on the headlines in those documents.
 
 - Section folding is fast, even for very large documents.
 - Unfolded headers are displayed as an outline of their contents.
