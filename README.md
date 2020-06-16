@@ -1,10 +1,16 @@
 # minimd
 
-A [Markdown](https://commonmark.org/) syntax and filetype plugin for Vim that aims to make writing and outlining pleasant.
+Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) documents in Vim.  It is mostly a simple implementation of the header visibility cycling idea from [Org Mode](https://orgmode.org/) for Emacs, which makes it easy to keep track of the contents of long documents by desplaying outlines based on the headlines in those documents.
 
-- Section folding is manual, but is based on syntax, so is fast even for large files.
-- Header navigation is also based on syntax so avoids problems such as mistakenly jumping to comments in code blocks.
-- The complexity and configurability of this plugin are both strictly limited by my reluctance to learn Vimscript.
+- Section folding is fast, even for very large documents.
+- Unfolded headers are displayed as an outline of their contents.
+- Header motion commands ignore comments in code blocks.
+- Basic task management with checkbox toggling.
+- A fast word count function that shows its results in the status line.
+
+## Demonstration
+
+![](http://johnob.sdf.org/resources/minimd_demo.gif)
 
 ## Usage
 
@@ -21,12 +27,3 @@ A [Markdown](https://commonmark.org/) syntax and filetype plugin for Vim that ai
 ## Exporting with Pandoc
 
 If you would like to export your Markdown file to another format, [Pandoc](https://pandoc.org/) can probably do what you want; you can easily set keybindings to facilitate repeated exports.  For instance, the sequence `<Leader>ep` can be set to export a PDF of the current Markdown file by adding the line `autocmd FileType minimd nmap <Leader>ep :!pandoc -f markdown -o example.pdf '%'` to your `vimrc`.  See [the Pandoc manual](https://pandoc.org/MANUAL.html) for an overview of its many options.
-
-## To Do
-
-- [X] Change folding behavior
-    - fold on unfolded header: inclusive fold of children
-    - fold on folded header: show immediate children
-- [X] Change fold appearance so that header level is obvious
-- [ ] Make sure settings, including those for the status line, don't leak
-- [ ] Conditionally trigger `syntax sync fromstart`
