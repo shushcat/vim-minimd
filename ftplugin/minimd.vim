@@ -15,6 +15,7 @@ function! minimd#FoldText()
   let line = getline(v:foldstart)
   let folded_line_num = v:foldend - v:foldstart
   let line_text = substitute(line, '\(.\{56\}.\{-\}\)\s.*', '\1', 'g')
+  let line_text = substitute(line_text, '\s*$', '', 'g')
   let fillcharcount = 70 - len(line_text) - len(folded_line_num)
   return line_text . repeat('.', fillcharcount) . '(' . folded_line_num . ' Lines)'
 endfunction
