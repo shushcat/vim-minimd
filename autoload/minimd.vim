@@ -3,18 +3,16 @@
 " Author:       J. O. Brickley
 
 " Folding:
+
 function! minimd#ManualFold()
   let l:pos1 = getpos(".")
   if foldlevel(l:pos1[1]) != 0
     execute 'silent! normal! zd'
   else
-    let l:headID = synIDtrans(hlID("mdHeader"))
-    let l:currID = synIDtrans(synID(line("."), 1, 1))
-    if l:headID != l:currID
+    if !(minimd#isHeader(line(".")))
       let l:rescuepos = winsaveview()
       call minimd#HeaderMotion('B')
-      let l:currID = synIDtrans(synID(line("."), 1, 1))
-      if l:headID != l:currID
+      if !(minimd#isHeader(line(".")))
         call winrestview(l:rescuepos)
         return
       endif
@@ -48,14 +46,27 @@ function! minimd#HeaderLevel()
 endfunction
 
 function! minimd#MakeFold(l1, l2)
-  if a:l2 == line('$')
+  if (a:l1 == a:l2)
+    return
+  elseif (a:l2 == line('$')) && !(minimd#isHeader(a:l2))
     execute a:l1 ',' a:l2 'fold'
   else
     execute a:l1 ',' a:l2 - 1 'fold'
   endif
 endfunction
 
+function! minimd#isHeader(ln)
+  let l:currID = synIDtrans(synID(a:ln, 1, 1))
+  let l:headID = synIDtrans(hlID("mdHeader"))
+  if l:currID == l:headID
+    return 1
+  else
+    return 0
+  endif
+endfunction
+
 " Task Toggling:
+
 function! minimd#TaskToggle()
   let b:line = getline(".")
   let b:linenum = line(".")
@@ -72,6 +83,7 @@ function! minimd#TaskToggle()
 endfunction
 
 " Header Promotion:
+
 function! minimd#PromoteHeader()
   let b:line = getline(".")
   let b:linenum = line(".")
@@ -85,6 +97,7 @@ function! minimd#PromoteHeader()
 endfunction
 
 " Header Demotion:
+
 function! minimd#DemoteHeader()
   let b:line = getline(".")
   let b:linenum = line(".")
@@ -98,6 +111,7 @@ function! minimd#DemoteHeader()
 endfunction
 
 " Header Motion:
+
 function! minimd#HeaderMotion(dir)
   let l:synID1 = synIDtrans(hlID("mdHeader"))
   while 1
@@ -117,21 +131,23 @@ function! minimd#HeaderMotion(dir)
 endfunction
 
 " Word Count:
+
 function! minimd#ReturnWordCount()
   return b:word_count
 endfunction
+
 function! minimd#UpdateWordCount()
-   let s:old_status = v:statusmsg
-   let position = getpos(".")
-   exe ":silent normal g\<c-g>"
-   let stat = v:statusmsg
-   let s:word_count = 0
-   if stat != '--No lines in buffer--'
-     let s:word_count = str2nr(split(v:statusmsg)[11])
-     let v:statusmsg = s:old_status
-   end
-   call setpos('.', position)
-   let b:word_count = s:word_count
+  let s:old_status = v:statusmsg
+  let position = getpos(".")
+  exe ":silent normal g\<c-g>"
+  let stat = v:statusmsg
+  let s:word_count = 0
+  if stat != '--No lines in buffer--'
+    let s:word_count = str2nr(split(v:statusmsg)[11])
+    let v:statusmsg = s:old_status
+  end
+  call setpos('.', position)
+  let b:word_count = s:word_count
 endfunction
 autocmd InsertLeave * call minimd#UpdateWordCount()
 autocmd TextChanged * call minimd#UpdateWordCount()
