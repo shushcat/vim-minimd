@@ -6,13 +6,15 @@
 
 function! minimd#ManualFold()
   let l:pos1 = getpos(".")
+  " If on a fold, unfold.
   if foldlevel(l:pos1[1]) != 0
     execute 'silent! normal! zd'
   else
-    if !(minimd#isHeader(line(".")))
+    if !(minimd#IsHeader(line(".")))
       let l:rescuepos = winsaveview()
       call minimd#HeaderMotion('B')
-      if !(minimd#isHeader(line(".")))
+      " Don't attempt folding before the first headline.
+      if !(minimd#IsHeader(line(".")))
         call winrestview(l:rescuepos)
         return
       endif
@@ -46,16 +48,16 @@ function! minimd#HeaderLevel()
 endfunction
 
 function! minimd#MakeFold(l1, l2)
-  if (a:l1 == a:l2)
+  if ((a:l1 >= a:l2) || (a:l1 == (a:l2 - 1) && !(a:l2 == line('$') && !(minimd#IsHeader(a:l2)))))
     return
-  elseif (a:l2 == line('$')) && !(minimd#isHeader(a:l2))
+  elseif (a:l2 == line('$')) && !(minimd#IsHeader(a:l2))
     execute a:l1 ',' a:l2 'fold'
   else
     execute a:l1 ',' a:l2 - 1 'fold'
   endif
 endfunction
 
-function! minimd#isHeader(ln)
+function! minimd#IsHeader(ln)
   let l:currID = synIDtrans(synID(a:ln, 1, 1))
   let l:headID = synIDtrans(hlID("mdHeader"))
   if l:currID == l:headID
