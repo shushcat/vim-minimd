@@ -48,10 +48,10 @@ function! minimd#HeaderLevel()
 endfunction
 
 function! minimd#MakeFold(l1, l2)
-  if ((a:l1 >= a:l2) || (a:l1 == (a:l2 - 1) && !(a:l2 == line('$') && !(minimd#IsHeader(a:l2)))))
-    return
-  elseif (a:l2 == line('$')) && !(minimd#IsHeader(a:l2))
+  if (a:l2 == line('$')) && !(minimd#IsHeader(a:l2))
     execute a:l1 ',' a:l2 'fold'
+  elseif ((a:l1 >= a:l2) || (a:l1 == (a:l2 - 1)))
+    return
   else
     execute a:l1 ',' a:l2 - 1 'fold'
   endif
