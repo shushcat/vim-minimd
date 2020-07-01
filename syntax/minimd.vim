@@ -38,7 +38,7 @@ syntax region mdComment start=/<!--/ end=/-->/
 highlight default link mdComment Comment
 
 " Headers:
-syntax region mdHeader start="^##*" end="\($\|#\+\)"
+syntax match mdHeader /^##*.*$/
 highlight default link mdHeader Title
 
 " Title Metadata Blocks:
