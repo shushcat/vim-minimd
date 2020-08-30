@@ -21,9 +21,9 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 | `Shift-Tab`     | Jump to previous header.               |
 | `=`             | Promote header (`#` → `##`).           |
 | `-`             | Demote header (`##` → `#`).            |
-| `Enter` (or     | Add and toggle checkboxes in lists     |
-| `Control-Enter` | (`-` → `- [ ]` → `- [X]` → `- [ ]`).   |
-| when inserting) |                                        |
+| `Enter`;        | Add and toggle checkboxes in lists     |
+| `Alt-Enter`     | (`-` → `- [ ]` → `- [X]` → `- [ ]`).   |
+| when inserting  |                                        |
 
 ## Exporting with Pandoc
 
