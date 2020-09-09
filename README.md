@@ -22,7 +22,7 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 | `=`             | Promote header (`#` → `##`).           |
 | `-`             | Demote header (`##` → `#`).            |
 | `Enter`;        | Add and toggle checkboxes in lists     |
-| `Alt-Enter`     | (`-` → `- [ ]` → `- [X]` → `- [ ]`).   |
+| `Alt-Enter`     | (`-` → `- [ ]` → `- [x]` → `- [ ]`).   |
 | when inserting  |                                        |
 
 ## Exporting with Pandoc
