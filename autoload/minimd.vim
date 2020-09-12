@@ -81,6 +81,7 @@ function! minimd#TaskToggle()
   elseif b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) .*$'
     let b:newline = substitute(b:line, '\(^\s*\)\(-\|*\|+\|\d\+\.\)\s', '\1\2 \[ \] ', "")
     call setline(b:linenum, b:newline)
+    execute "normal! 4l"
   endif
 endfunction
 

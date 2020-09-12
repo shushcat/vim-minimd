@@ -2,8 +2,8 @@
 
 Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) documents in Vim.  It is mostly a simple implementation of the header visibility cycling idea from [Org Mode](https://orgmode.org/) for Emacs, which makes it easy to keep track of the contents of long documents by displaying outlines based on the headlines in those documents.
 
-- Section folding uses Vim's `foldmethod=manual` to fold by section, so is fast even for very large documents.
-- Unfolded headers are displayed as an outline of their contents.
+- Section folding uses Vim's `foldmethod=manual` to fold by section, so is fast even for very long documents.
+- Unfolded headers are displayed as outlines of their contents.
 - Header motion commands ignore comments in code blocks.
 - Basic task management with checkbox toggling.
 - A fast word count function that shows its results in the status line.
@@ -14,16 +14,15 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 
 ## Usage
 
-| Normal Mode Key | Action                                 |
-| --------------- | -------------------------------------- |
-| `Space`         | Fold or unfold the current header.     |
-| `Tab`           | Jump to next header.                   |
-| `Shift-Tab`     | Jump to previous header.               |
-| `=`             | Promote header (`#` → `##`).           |
-| `-`             | Demote header (`##` → `#`).            |
-| `Enter`;        | Add and toggle checkboxes in lists     |
-| `Alt-Enter`     | (`-` → `- [ ]` → `- [x]` → `- [ ]`).   |
-| when inserting  |                                        |
+ | Normal Mode Key | Insert Mode Key | Action                                 | 
+ | --------------- | --------------- | -------------------------------------- | 
+ | `Space`         |                 | Fold or unfold the current header.     | 
+ | `Tab`           |                 | Jump to next header.                   | 
+ | `Shift-Tab`     |                 | Jump to previous header.               | 
+ | `=`             |                 | Promote header (`#` → `##`).           | 
+ | `-`             |                 | Demote header (`##` → `#`).            | 
+ | `Enter`         | `Alt-Enter`     | Add and toggle checkboxes in lists     | 
+ |                 |                 | (`-` → `- [ ]` → `- [x]` → `- [ ]`).   | 
 
 ## Exporting with Pandoc
 
