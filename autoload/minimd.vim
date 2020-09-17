@@ -6,10 +6,13 @@
 
 function! minimd#ManualFold()
   let l:pos1 = getpos(".")
-  " If on a fold, unfold.
-  if foldlevel(l:pos1[1]) != 0
+  " If folded, just unfold.
+  if foldclosed(l:pos1[1]) > 0
     execute 'silent! normal! zd'
   else
+		if foldlevel(l:pos1[1]) != 0
+			execute 'silent! normal! zd'
+		endif
     if !(minimd#IsHeader(line(".")))
       let l:rescuepos = winsaveview()
       call minimd#HeaderMotion('B')
