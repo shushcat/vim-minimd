@@ -14,15 +14,15 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 
 ## Usage
 
- | Normal Mode Key | Insert Mode Key | Action                                 | 
- | --------------- | --------------- | -------------------------------------- | 
- | `Space`         |                 | Fold or unfold the current header.     | 
- | `Tab`           |                 | Jump to next header.                   | 
- | `Shift-Tab`     |                 | Jump to previous header.               | 
- | `=`             |                 | Promote header (`#` → `##`).           | 
- | `-`             |                 | Demote header (`##` → `#`).            | 
- | `Enter`         | `Alt-Enter`     | Add and toggle checkboxes in lists     | 
- |                 |                 | (`-` → `- [ ]` → `- [x]` → `- [ ]`).   | 
+ | Normal Mode Key    | Insert Mode Key | Action                                 | 
+ | ---------------    | --------------- | -------------------------------------- | 
+ | `Space`            |                 | Fold or unfold the current header.     | 
+ | `Tab` or `]`       |                 | Jump to next header.                   | 
+ | `Shift-Tab` or `[` |                 | Jump to previous header.               | 
+ | `=`                |                 | Promote header (`#` → `##`).           | 
+ | `-`                |                 | Demote header (`##` → `#`).            | 
+ | `Enter`            | `Alt-Enter`     | Add and toggle checkboxes in lists     | 
+ |                    |                 | (`-` → `- [ ]` → `- [x]` → `- [ ]`).   | 
 
 ## Exporting with Pandoc
 

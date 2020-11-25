@@ -50,6 +50,8 @@ setlocal shiftwidth=4
 " Headers:
 nmap <silent><buffer> <Tab> :call minimd#HeaderMotion('F')<CR>
 nmap <silent><buffer> <S-Tab> :call minimd#HeaderMotion('B')<CR>
+nmap <silent><buffer> ] :call minimd#HeaderMotion('F')<CR>
+nmap <silent><buffer> [ :call minimd#HeaderMotion('B')<CR>
 nnoremap <silent><buffer> = :call minimd#PromoteHeader()<CR>
 nnoremap <silent><buffer> - :call minimd#DemoteHeader()<CR>
 
