@@ -51,4 +51,14 @@ syntax match squareBrackets "\[" containedin=listItem
 syntax match squareBrackets "\]" containedin=listItem
 highlight default link squareBrackets PreProc
 
+" Keywords:
+syntax match qqMarker "qq" containedin=listItem
+highlight default link qqMarker Todo
+syntax match  actvKeyword "ACTV" containedin=listItem,mdHeader
+highlight default link actvKeyword Comment
+syntax match  doneKeyword "DONE" containedin=listItem,mdHeader
+highlight default link doneKeyword LineNr
+syntax match  todoKeyword "TODO" containedin=listItem,mdHeader
+highlight default link todoKeyword Todo
+
 let b:current_syntax = "minimd"
