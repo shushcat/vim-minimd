@@ -7,7 +7,7 @@ if exists("b:current_syntax")
 endif
 
 syntax spell toplevel
-syntax case ignore
+syntax case match
 syntax sync minlines=100
 
 " Lists:
@@ -53,7 +53,7 @@ highlight default link squareBrackets PreProc
 
 " Keywords:
 syntax match qqMarker "qq" containedin=listItem
-highlight default link qqMarker Todo
+highlight default link qqMarker PreProc
 syntax match  actvKeyword "ACTV" containedin=listItem,mdHeader
 highlight default link actvKeyword Comment
 syntax match  doneKeyword "DONE" containedin=listItem,mdHeader
