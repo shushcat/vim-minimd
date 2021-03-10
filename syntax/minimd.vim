@@ -52,8 +52,10 @@ syntax match squareBrackets "\]" containedin=listItem
 highlight default link squareBrackets PreProc
 
 " Keywords:
+syntax case ignore
 syntax match qqMarker "qq" containedin=listItem
 highlight default link qqMarker PreProc
+syntax case match
 syntax match  actvKeyword "ACTV" containedin=listItem,mdHeader
 highlight default link actvKeyword Comment
 syntax match  doneKeyword "DONE" containedin=listItem,mdHeader
