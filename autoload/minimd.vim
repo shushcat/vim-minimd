@@ -125,7 +125,10 @@ function! minimd#HeaderMotion(dir)
     if a:dir ==# 'B'
       execute "normal! k"
     else
-      execute "normal! j"
+			" Don't attempt to move beyond EOF.
+			if !(line('.') == line('$'))
+				execute "normal! j"
+			endif
     endif
     let l:pos2 = getpos(".")
     let l:synID2 = synIDtrans(synID(line("."), 1, 1))
