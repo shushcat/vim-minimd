@@ -60,7 +60,6 @@ nmap j gj
 nmap k gk
 
 " Tasks:
-imap <silent><buffer> <M-CR> <ESC>:call minimd#TaskToggle()<CR>li
 nmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
 
