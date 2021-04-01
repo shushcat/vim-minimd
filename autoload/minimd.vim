@@ -123,11 +123,12 @@ function! minimd#HeaderMotion(dir)
   while 1
     let l:pos1 = getpos(".")
     if a:dir ==# 'B'
-      execute "normal! k"
+			execute search("^#", "b", 1)
     else
+			execute search("^#", 'W')
 			" Don't attempt to move beyond EOF.
-			if !(line('.') == line('$'))
-				execute "normal! j"
+			if (line('.') == 1)
+				execute "normal! G"
 			endif
     endif
     let l:pos2 = getpos(".")
