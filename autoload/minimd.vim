@@ -4,6 +4,18 @@
 
 " Folding:
 
+function! minimd#BufferFold()
+  let l:lnum = line(".")
+	execute 'silent! normal! gg'
+	" Delete all folds.
+	execute 'silent! normal! zE'
+	while line('.') != line('$')
+		call minimd#ManualFold()
+		call minimd#HeaderMotion('F')
+	endwhile
+	execute l:lnum
+endfunction
+
 function! minimd#ManualFold()
   let l:pos1 = getpos(".")
   " If folded, just unfold.
@@ -122,6 +134,14 @@ function! minimd#HeaderMotion(dir)
   let l:synID1 = synIDtrans(hlID("mdHeader"))
   while 1
     let l:pos1 = getpos(".")
+		" If in a fold, first move to its beginning or end.
+		if foldlevel(l:pos1[1]) != 0
+			if a:dir ==# 'B'
+				execute 'silent! normal! zo[zzc'
+			else
+				execute 'silent! normal! zo]zzc'
+			endif
+		endif
     if a:dir ==# 'B'
 			execute search("^#", "b", 1)
     else
@@ -131,6 +151,7 @@ function! minimd#HeaderMotion(dir)
 				execute "normal! G"
 			endif
     endif
+		execute "silent! normal! zz"
     let l:pos2 = getpos(".")
     let l:synID2 = synIDtrans(synID(line("."), 1, 1))
     if  l:synID1 == l:synID2 || l:pos1 == l:pos2

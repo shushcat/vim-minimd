@@ -22,6 +22,7 @@ function! minimd#FoldText()
 endfunction
 setlocal fillchars=fold:\ 
 nmap <silent><buffer> <Space> :call minimd#ManualFold()<CR>
+nmap <silent><buffer> z<Space> :call minimd#BufferFold()<CR>
 
 " Formatting:
 setlocal formatoptions+=1tcqljn 
