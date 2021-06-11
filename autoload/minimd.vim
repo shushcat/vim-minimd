@@ -103,33 +103,34 @@ endfunction
 " Header Promotion:
 
 function! minimd#PromoteHeader()
-	let l:pos = getpos(".")
-	execute "s/^#/##/"
-	call setpos('.', l:pos)
+	let l:lnum = line(".")
+	let l:hlvl = minimd#HeaderLevel()
+	if l:hlvl == 0
+		return
+	elseif l:hlvl == 1
+		execute "silent! s/^##/###/"
+		execute "silent! normal! zo"
+		execute l:lnum
+		execute "silent! s/^#/##/"
+		execute "silent! normal! zc"
+	else
+		execute "silent! s/^##/###/"
+		execute l:lnum
+	endif
+	execute "normal! zz"
 endfunction
 
 " Header Demotion:
 
-" function! minimd#DemoteHeader()
-"   let b:line = getline(".")
-"   let b:linenum = line(".")
-"   if b:line =~ '^##\+ .*$'
-"     let b:newline = substitute(b:line, '##', '#', "")
-"     call setline(b:linenum, b:newline)
-"   elseif b:line =~ '^# .*$'
-"     let b:newline = substitute(b:line, '^# ', '', "")
-"     call setline(b:linenum, b:newline)
-"   endif
-" endfunction
-
 function! minimd#DemoteHeader()
-	let l:pos1 = getpos(".")
-	let l:pos1lvl = minimd#HeaderLevel()
-	if l:pos1lvl == 1 
+	let l:lnum = line(".")
+	let l:hlvl = minimd#HeaderLevel()
+	if l:hlvl <= 1
 		return
 	endif
-	execute "s/^##/#/"
-	call setpos('.', l:pos1)
+	execute "silent! s/^##/#/"
+	execute l:lnum
+	execute "normal! zz"
 endfunction
 
 " Header Motion:
