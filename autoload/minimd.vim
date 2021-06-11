@@ -103,29 +103,33 @@ endfunction
 " Header Promotion:
 
 function! minimd#PromoteHeader()
-  let b:line = getline(".")
-  let b:linenum = line(".")
-  if b:line =~ '^#* .*$'
-    let b:newline = substitute(b:line, '#', '##', "")
-    call setline(b:linenum, b:newline)
-  elseif b:line =~ '^.*$'
-    let b:newline = substitute(b:line, '^', '# ', "")
-    call setline(b:linenum, b:newline)
-  endif
+	let l:pos = getpos(".")
+	execute "s/^#/##/"
+	call setpos('.', l:pos)
 endfunction
 
 " Header Demotion:
 
+" function! minimd#DemoteHeader()
+"   let b:line = getline(".")
+"   let b:linenum = line(".")
+"   if b:line =~ '^##\+ .*$'
+"     let b:newline = substitute(b:line, '##', '#', "")
+"     call setline(b:linenum, b:newline)
+"   elseif b:line =~ '^# .*$'
+"     let b:newline = substitute(b:line, '^# ', '', "")
+"     call setline(b:linenum, b:newline)
+"   endif
+" endfunction
+
 function! minimd#DemoteHeader()
-  let b:line = getline(".")
-  let b:linenum = line(".")
-  if b:line =~ '^##\+ .*$'
-    let b:newline = substitute(b:line, '##', '#', "")
-    call setline(b:linenum, b:newline)
-  elseif b:line =~ '^# .*$'
-    let b:newline = substitute(b:line, '^# ', '', "")
-    call setline(b:linenum, b:newline)
-  endif
+	let l:pos1 = getpos(".")
+	let l:pos1lvl = minimd#HeaderLevel()
+	if l:pos1lvl == 1 
+		return
+	endif
+	execute "s/^##/#/"
+	call setpos('.', l:pos1)
 endfunction
 
 " Header Motion:
