@@ -12,8 +12,7 @@ setlocal foldmethod=manual
 setlocal foldopen-=search
 setlocal foldtext=minimd#FoldText()
 setlocal fillchars=fold:\ 
-nmap <silent><buffer> <Space> :call minimd#ToggleFold()<CR>
-nmap <silent><buffer> z<Space> :<C-u>call minimd#FoldAllHeaders(v:count)<CR>
+nmap <silent><buffer> <Space> :<C-u>call minimd#ToggleFold(v:count)<CR>
 
 " Formatting:
 setlocal formatoptions+=1tcqljn 

@@ -64,14 +64,15 @@ function! minimd#UnfoldHeader()
 	execute l:beg
 endfunction
 
-function! minimd#ToggleFold()
+function! minimd#ToggleFold(lvl)
 	let l:beg = line(".")
-	if foldclosed(l:beg) == -1
+	if a:lvl != 0
+		call minimd#FoldAllHeaders(a:lvl)
+	elseif foldclosed(l:beg) == -1
 		call minimd#FoldHeader()
 	else
 		call minimd#UnfoldHeader()
 	endif
-	return
 endfunction
 
 function! minimd#HeaderLevel()
