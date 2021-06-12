@@ -5,7 +5,7 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 - Fast section folding, even for very long documents;
 - Display of unfolded headers as outlines of their contents;
 - A header motion command that ignores code blocks (so doesn't mistake `#` comments for headers);
-- Basic task management with checkbox toggling, along with and `ACTV`, `TODO`, and `DONE` keywords;
+- Basic task management with checkbox toggling, along with `ACTV`, `TODO`, and `DONE` keywords;
 - A word count, from Vim's fast builtin `wordcount()` function, in the status line, set to update only when toggling between insert and normal modes.
 
 ## Demonstration
