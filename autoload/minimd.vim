@@ -6,65 +6,82 @@
 
 function! minimd#FoldAllHeaders(lvl)
   let l:lnum = line(".")
-	let hmark = repeat("#", a:lvl)
+	let l:hmark = repeat("#", a:lvl)
 	normal G$
-	" Delete all folds.
 	silent! normal! zE
 	let sflag = "w"
-	while search("^" . hmark . " ", l:sflag) > 0
+	while search("^" . l:hmark . " ", l:sflag) > 0
 		let l:poslvl = minimd#HeaderLevel()
 		if l:poslvl == a:lvl
-			call minimd#ManualFold()
+			call minimd#FoldHeader()
 		endif
 		let sflag = "W"
 	endwhile
 	execute l:lnum
 endfunction
 
-function! minimd#ManualFold()
-  let l:pos1 = getpos(".")
-  " If folded, just unfold.
-  if foldclosed(l:pos1[1]) > 0
-    execute 'silent! normal! zd'
-  else
-		if foldlevel(l:pos1[1]) != 0
-			execute 'silent! normal! zd'
+function! minimd#FoldHeader()
+	let l:beg = line(".")
+	let l:end = line("$")
+	let l:beglvl = minimd#HeaderLevel()
+	if l:beglvl == 0
+		return
+	endif
+	silent! normal! zD
+	while 1
+		execute search("^#", "W")
+		let l:end = line(".")
+		let l:endlvl = minimd#HeaderLevel()
+		if l:end == 1
+			let l:end = line("$")
+			break
+		elseif l:endlvl <= l:beglvl && minimd#IsHeader(l:end)
+			let l:end = line(".")
+			break
 		endif
-    if !(minimd#IsHeader(line(".")))
-      let l:rescuepos = winsaveview()
-      call minimd#HeaderMotion('B')
-      " Don't attempt folding before the first headline.
-      if !(minimd#IsHeader(line(".")))
-        call winrestview(l:rescuepos)
-        return
-      endif
-      let l:pos1 = getpos(".")
-    endif
-    let l:pos1lvl = minimd#HeaderLevel()
-    execute 'silent! normal! zd'
-    call minimd#HeaderMotion('F')
-    let l:pos2 = getpos(".")
-    let l:pos2lvl = minimd#HeaderLevel()
-    while l:pos1lvl < l:pos2lvl
-      execute 'silent! normal! zd'
-      call minimd#HeaderMotion('F')
-      let l:pos3 = getpos(".")
-      if l:pos2[1] == l:pos3[1]
-        let l:pos2[1] = l:pos2[1] + 1
-        break
-      endif
-      call minimd#FoldRange(l:pos2[1], l:pos3[1])
-      let l:pos2 = getpos(".")
-      let l:pos2lvl = minimd#HeaderLevel()
-    endwhile
-    call minimd#FoldRange(l:pos1[1], l:pos2[1])
-    call setpos('.', l:pos1)
-  endif
+	endwhile
+	call minimd#FoldRange(l:beg, l:end)
+	execute l:beg
+endfunction
+
+function! minimd#UnfoldHeader()
+	silent! normal! zo]z
+	let l:end = line(".")
+	silent! normal! [z
+	silent! normal! zD
+	let l:beg = line(".")
+	let l:hlvl = minimd#HeaderLevel() + 1
+	let l:hmark = repeat("#", l:hlvl)
+	while line(".") < l:end
+		if l:hlvl == minimd#HeaderLevel()
+			call minimd#FoldHeader()
+		endif
+		execute search("^" . l:hmark . " ", "W")
+		if line(".") == 1
+			break
+		endif
+	endwhile
+	execute l:beg
+endfunction
+
+function! minimd#ToggleFold()
+	let l:beg = line(".")
+	if foldclosed(l:beg) == -1
+		call minimd#FoldHeader()
+	else
+		call minimd#UnfoldHeader()
+	endif
+	return
 endfunction
 
 function! minimd#HeaderLevel()
-  let l:currLine = getline(".")
-  return matchend(l:currLine, '^#*')
+  let l:ln = line(".")
+	let l:txt = getline(l:ln)
+	if (minimd#IsHeader(l:ln)) == 0
+		return 0
+	else
+		return matchend(l:txt, '^#*')
+	endif
 endfunction
 
 function! minimd#FoldRange(l1, l2)
@@ -85,6 +102,16 @@ function! minimd#IsHeader(ln)
   else
     return 0
   endif
+endfunction
+
+function! minimd#FoldText()
+  let line = getline(v:foldstart)
+  let folded_line_num = v:foldend - v:foldstart
+  let line_text = substitute(line, '\(.\{56\}.\{-\}\)\s.*', '\1', 'g')
+  let line_text = substitute(line, '\(.\{64\}\).*', '\1', 'g')
+  let line_text = substitute(line_text, '\s*$', '', 'g')
+  let fillcharcount = 70 - len(line_text) - len(folded_line_num)
+  return line_text . repeat('.', fillcharcount) . '(' . folded_line_num . ' Lines)'
 endfunction
 
 " Task Toggling:

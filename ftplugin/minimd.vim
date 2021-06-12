@@ -11,18 +11,9 @@ let b:minimd_plugin_loaded = 1
 setlocal foldmethod=manual
 setlocal foldopen-=search
 setlocal foldtext=minimd#FoldText()
-function! minimd#FoldText()
-  let line = getline(v:foldstart)
-  let folded_line_num = v:foldend - v:foldstart
-  let line_text = substitute(line, '\(.\{56\}.\{-\}\)\s.*', '\1', 'g')
-  let line_text = substitute(line, '\(.\{64\}\).*', '\1', 'g')
-  let line_text = substitute(line_text, '\s*$', '', 'g')
-  let fillcharcount = 70 - len(line_text) - len(folded_line_num)
-  return line_text . repeat('.', fillcharcount) . '(' . folded_line_num . ' Lines)'
-endfunction
 setlocal fillchars=fold:\ 
-nmap <silent><buffer> <Space> :call minimd#ManualFold()<CR>
-nmap <silent><buffer> z<Space> :call minimd#FoldAllHeaders(v:count)<CR>
+nmap <silent><buffer> <Space> :call minimd#ToggleFold()<CR>
+nmap <silent><buffer> z<Space> :<C-u>call minimd#FoldAllHeaders(v:count)<CR>
 
 " Formatting:
 setlocal formatoptions+=1tcqljn 
