@@ -4,14 +4,19 @@
 
 " Folding:
 
-function! minimd#BufferFold()
+function! minimd#FoldAllHeaders(lvl)
   let l:lnum = line(".")
-	execute 'silent! normal! gg'
+	let hmark = repeat("#", a:lvl)
+	normal G$
 	" Delete all folds.
-	execute 'silent! normal! zE'
-	while line('.') != line('$')
-		call minimd#ManualFold()
-		call minimd#HeaderMotion('F')
+	silent! normal! zE
+	let sflag = "w"
+	while search("^" . hmark . " ", l:sflag) > 0
+		let l:poslvl = minimd#HeaderLevel()
+		if l:poslvl == a:lvl
+			call minimd#ManualFold()
+		endif
+		let sflag = "W"
 	endwhile
 	execute l:lnum
 endfunction
@@ -48,11 +53,11 @@ function! minimd#ManualFold()
         let l:pos2[1] = l:pos2[1] + 1
         break
       endif
-      call minimd#MakeFold(l:pos2[1], l:pos3[1])
+      call minimd#FoldRange(l:pos2[1], l:pos3[1])
       let l:pos2 = getpos(".")
       let l:pos2lvl = minimd#HeaderLevel()
     endwhile
-    call minimd#MakeFold(l:pos1[1], l:pos2[1])
+    call minimd#FoldRange(l:pos1[1], l:pos2[1])
     call setpos('.', l:pos1)
   endif
 endfunction
@@ -62,7 +67,7 @@ function! minimd#HeaderLevel()
   return matchend(l:currLine, '^#*')
 endfunction
 
-function! minimd#MakeFold(l1, l2)
+function! minimd#FoldRange(l1, l2)
   if (a:l2 == line('$')) && !(minimd#IsHeader(a:l2))
     execute a:l1 ',' a:l2 'fold'
   elseif ((a:l1 >= a:l2) || (a:l1 == (a:l2 - 1)))
