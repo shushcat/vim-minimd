@@ -25,7 +25,14 @@ function! minimd#FoldHeader()
 	let l:end = line("$")
 	let l:beglvl = minimd#HeaderLevel()
 	if l:beglvl == 0
-		return
+		call minimd#HeaderMotion('B')
+		let l:beglvl = minimd#HeaderLevel()
+		if l:beglvl == 0
+			execute l:beg
+			return
+		else
+			let l:beg = line(".")
+		endif
 	endif
 	silent! normal! zD
 	while 1
