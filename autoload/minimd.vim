@@ -21,6 +21,7 @@ function! minimd#FoldAllHeaders(lvl)
 endfunction
 
 function! minimd#FoldHeader()
+	silent! normal! zD
 	let l:beg = line(".")
 	let l:end = line("$")
 	let l:beglvl = minimd#HeaderLevel()
@@ -34,7 +35,6 @@ function! minimd#FoldHeader()
 			let l:beg = line(".")
 		endif
 	endif
-	silent! normal! zD
 	while 1
 		execute search("^#", "W")
 		let l:end = line(".")
