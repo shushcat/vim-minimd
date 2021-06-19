@@ -17,7 +17,7 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 | Normal Mode Key     | Action                                  | 
 | ---------------     | --------------------------------------  | 
 | `Space`             | Fold or unfold the current header.      | 
-| _n_-`Space`         | Fold all headers of level _n_.          | 
+| _n_`Space`          | Fold all headers of level _n_.          | 
 | `Tab` or `]`        | Jump to next header.                    | 
 | `Shift-Tab` or `[`  | Jump to previous header.                | 
 | `=`                 | Promote header (`#` → `##`).            | 
