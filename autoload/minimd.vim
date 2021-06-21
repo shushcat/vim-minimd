@@ -182,7 +182,7 @@ function! minimd#HeaderMotion(dir)
 		" If in a fold
 		if foldlevel(l:pos1[1]) != 0
 			" and that fold is closed,
-			if foldclosed(l:pos1[1]) == 1
+			if foldclosed(l:pos1[1]) != -1
 				" first move to its beginning or end;
 				if a:dir ==# 'B'
 					execute 'silent! normal! zo[zzc'
