@@ -179,13 +179,23 @@ function! minimd#HeaderMotion(dir)
   let l:synID1 = synIDtrans(hlID("mdHeader"))
   while 1
     let l:pos1 = getpos(".")
-		" If in a fold, first move to its beginning or end.
+		" If in a fold
 		if foldlevel(l:pos1[1]) != 0
-			if a:dir ==# 'B'
-				execute 'silent! normal! zo[zzc'
+			" and that fold is closed,
+			if foldclosed(l:pos1[1]) == 1
+				" first move to its beginning or end;
+				if a:dir ==# 'B'
+					execute 'silent! normal! zo[zzc'
+				else
+					execute 'silent! normal! zo]zzc'
+				endif
+			" otherwise, remove the fold;
 			else
-				execute 'silent! normal! zo]zzc'
+				silent! normal! zd
 			endif
+		" and if an unfolded header, move to the first column.
+		elseif minimd#IsHeader(l:pos1[1]) == 1
+			normal! 0
 		endif
     if a:dir ==# 'B'
 			execute search("^#", "b", 1)
