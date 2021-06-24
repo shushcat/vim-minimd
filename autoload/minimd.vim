@@ -52,10 +52,10 @@ function! minimd#FoldHeader()
 endfunction
 
 function! minimd#UnfoldHeader()
+	let l:beg = line(".")
 	silent! normal! zo]z
 	let l:end = line(".")
 	silent! normal! [z
-	let l:beg = line(".")
 	silent! normal! zD
 	let l:hlvl = minimd#HeaderLevel() + 1
 	let l:hmark = repeat("#", l:hlvl)
@@ -199,6 +199,7 @@ function! minimd#HeaderMotion(dir)
 		endif
     if a:dir ==# 'B'
 			execute search("^#", "b", 1)
+			silent! normal! zo[zzc
     else
 			execute search("^#", 'W')
 			" Don't attempt to move beyond EOF.
