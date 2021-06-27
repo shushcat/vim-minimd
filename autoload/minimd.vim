@@ -176,6 +176,7 @@ endfunction
 " Header Motion:
 
 function! minimd#HeaderMotion(dir)
+	silent! normal! m'
   let l:synID1 = synIDtrans(hlID("mdHeader"))
   while 1
     let l:pos1 = getpos(".")
