@@ -14,16 +14,16 @@ Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) do
 
 ## Usage
 
-| Normal Mode Key     | Action                                  | 
-| ---------------     | --------------------------------------  | 
-| `Space`             | Fold or unfold the current header.      | 
-| _n_`Space`          | Fold all headers of level _n_.          | 
-| `Tab` or `]`        | Jump to next header.                    | 
-| `Shift-Tab` or `[`  | Jump to previous header.                | 
-| `=`                 | Promote header (`#` → `##`).            | 
-| `-`                 | Demote header (`##` → `#`).             | 
-| `Enter`             | Add and toggle checkboxes in lists      | 
-|                     | (`-` → `- [ ]` → `- [x]` → `- [ ]`).    | 
+| Normal Mode Key      | Action                                  | 
+| ---------------      | --------------------------------------  | 
+| `Space`              | Fold or unfold the current header.      | 
+| _n_`Space`           | Fold all headers of level _n_.          | 
+| `Tab` or `]h`        | Jump to next header.                    | 
+| `Shift-Tab` or `[h`  | Jump to previous header.                | 
+| `=`                  | Promote header (`#` → `##`).            | 
+| `-`                  | Demote header (`##` → `#`).             | 
+| `Enter`              | Add and toggle checkboxes in lists      | 
+|                      | (`-` → `- [ ]` → `- [x]` → `- [ ]`).    | 
 
 As always in Vim, you can execute any command from Insert mode by prefixing it with `Ctrl-o`; so, for example, you would toggle a checkbox without leaving Insert mode by typing `Ctrl-o` followed by `Enter`.  For more on executing Normal mode commands from Insert mode, consult `:help i_CTRL-o`.
 

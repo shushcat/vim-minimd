@@ -39,20 +39,25 @@ setlocal number
 setlocal shiftwidth=4
 
 " Headers:
-nmap <silent><buffer> <Tab> :call minimd#HeaderMotion('F')<CR>
-nmap <silent><buffer> <S-Tab> :call minimd#HeaderMotion('B')<CR>
-nmap <silent><buffer> ] :call minimd#HeaderMotion('F')<CR>
-nmap <silent><buffer> [ :call minimd#HeaderMotion('B')<CR>
-nnoremap <silent><buffer> = :call minimd#PromoteHeader()<CR>
-nnoremap <silent><buffer> - :call minimd#DemoteHeader()<CR>
+command! MiniMDNext call minimd#HeaderMotion('F')
+command! MiniMDPrev call minimd#HeaderMotion('B')
+nmap <silent><buffer> <Tab> :MiniMDNext<CR>
+nmap <silent><buffer> <S-Tab> :MiniMDPrev<CR>
+nmap <silent><buffer> ]h :MiniMDNext<CR>
+nmap <silent><buffer> [h :MiniMDPrev<CR>
+command! MiniMDPromote call minimd#PromoteHeader()
+command! MiniMDDemote call minimd#DemoteHeader()
+nnoremap <silent><buffer> = MiniMDPromote<CR>
+nnoremap <silent><buffer> - MiniMDDemote<CR>
 
 " Motion:
 nmap j gj
 nmap k gk
 
 " Tasks:
-nmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
-vmap <silent><buffer> <CR> :call minimd#TaskToggle()<CR>
+command! MiniMDToggle call minimd#TaskToggle()
+nmap <silent><buffer> <CR> :MiniMDToggle<CR>
+vmap <silent><buffer> <CR> :MiniMDToggle<CR>
 
 " Word Count:
 let b:word_count = minimd#UpdateWordCount()
