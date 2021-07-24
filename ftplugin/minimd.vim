@@ -47,8 +47,8 @@ nmap <silent><buffer> ]h :MiniMDNext<CR>
 nmap <silent><buffer> [h :MiniMDPrev<CR>
 command! MiniMDPromote call minimd#PromoteHeader()
 command! MiniMDDemote call minimd#DemoteHeader()
-nnoremap <silent><buffer> = MiniMDPromote<CR>
-nnoremap <silent><buffer> - MiniMDDemote<CR>
+nnoremap <silent><buffer> = :MiniMDPromote<CR>
+nnoremap <silent><buffer> - :MiniMDDemote<CR>
 
 " Motion:
 nmap j gj
