@@ -58,9 +58,13 @@ highlight default link qqMarker PreProc
 syntax case match
 syntax match  actvKeyword "ACTV" containedin=listItem,mdHeader
 highlight default link actvKeyword Comment
+syntax match  cnclKeyword "CNCL" containedin=listItem,mdHeader
+highlight default link cnclKeyword LineNr
 syntax match  doneKeyword "DONE" containedin=listItem,mdHeader
 highlight default link doneKeyword LineNr
 syntax match  todoKeyword "TODO" containedin=listItem,mdHeader
 highlight default link todoKeyword Todo
+syntax match  waitKeyword "WAIT" containedin=listItem,mdHeader
+highlight default link waitKeyword Comment
 
 let b:current_syntax = "minimd"
