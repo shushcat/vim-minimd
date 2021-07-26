@@ -3,9 +3,9 @@
 " Author:       J. O. Brickley
 
 if exists("g:default_markdown_syntax")
-	let b:headerSynName = "markdownHeadingDelimiter"
+	let s:headerSynName = "markdownHeadingDelimiter"
 else
-	let b:headerSynName = "mdHeader"
+	let s:headerSynName = "mdHeader"
 end
 
 " Folding:
@@ -32,7 +32,7 @@ function! minimd#FoldHeader()
 	let l:end = line("$")
 	let l:beglvl = minimd#HeaderLevel()
 	if l:beglvl == 0
-		call minimd#HeaderMotion('B')
+		call minimd#HeaderMotion('B', 0)
 		let l:beglvl = minimd#HeaderLevel()
 		if l:beglvl == 0
 			execute l:beg
@@ -110,7 +110,7 @@ endfunction
 
 function! minimd#IsHeader(ln)
   let l:currID = synIDtrans(synID(a:ln, 1, 1))
-  let l:headID = synIDtrans(hlID(b:headerSynName))
+  let l:headID = synIDtrans(hlID(s:headerSynName))
   if l:currID == l:headID
     return 1
   else
@@ -181,9 +181,14 @@ endfunction
 
 " Header Motion:
 
-function! minimd#HeaderMotion(dir)
+function! minimd#HeaderMotion(dir, lvl)
 	silent! normal! m'
-  let l:synID1 = synIDtrans(hlID(b:headerSynName))
+	if a:lvl == 0
+		let l:hmark = "^#"
+	else
+		let l:hmark = "^" . repeat("#", a:lvl) . " "
+	endif
+  let l:synID1 = synIDtrans(hlID(s:headerSynName))
   while 1
     let l:pos1 = getpos(".")
 		" If in a fold
@@ -205,10 +210,10 @@ function! minimd#HeaderMotion(dir)
 			normal! 0
 		endif
     if a:dir ==# 'B'
-			execute search("^#", "b", 1)
+			execute search(l:hmark, "b", 1)
 			silent! normal! zo[zzc
     else
-			execute search("^#", 'W')
+			execute search(l:hmark, 'W')
 			" Don't attempt to move beyond EOF.
 			if (line('.') == 1)
 				execute "normal! G"

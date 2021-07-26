@@ -12,7 +12,8 @@ setlocal foldmethod=manual
 setlocal foldopen-=search
 setlocal foldtext=minimd#FoldText()
 setlocal fillchars=fold:\ 
-nmap <silent><buffer> <Space> :<C-u>call minimd#ToggleFold(v:count)<CR>
+command! MiniMDToggleFold call minimd#ToggleFold(v:count)
+nmap <silent><buffer> <Space> :<C-u>MiniMDToggleFold<CR>
 
 " Formatting:
 setlocal formatoptions+=1tcqljn 
@@ -39,12 +40,12 @@ setlocal number
 setlocal shiftwidth=4
 
 " Headers:
-command! MiniMDNext call minimd#HeaderMotion('F')
-command! MiniMDPrev call minimd#HeaderMotion('B')
-nmap <silent><buffer> <Tab> :MiniMDNext<CR>
-nmap <silent><buffer> <S-Tab> :MiniMDPrev<CR>
-nmap <silent><buffer> ]h :MiniMDNext<CR>
-nmap <silent><buffer> [h :MiniMDPrev<CR>
+command! MiniMDNext call minimd#HeaderMotion('F', v:count)
+command! MiniMDPrev call minimd#HeaderMotion('B', v:count)
+nmap <silent><buffer> <Tab> :<C-u>MiniMDNext<CR>
+nmap <silent><buffer> <S-Tab> :<C-u>MiniMDPrev<CR>
+nmap <silent><buffer> ]h :<C-u>MiniMDNext<CR>
+nmap <silent><buffer> [h :<C-u>MiniMDPrev<CR>
 command! MiniMDPromote call minimd#PromoteHeader()
 command! MiniMDDemote call minimd#DemoteHeader()
 nnoremap <silent><buffer> = :MiniMDPromote<CR>
@@ -55,9 +56,9 @@ nmap j gj
 nmap k gk
 
 " Tasks:
-command! MiniMDToggle call minimd#TaskToggle()
-nmap <silent><buffer> <CR> :MiniMDToggle<CR>
-vmap <silent><buffer> <CR> :MiniMDToggle<CR>
+command! MiniMDTaskToggle call minimd#TaskToggle()
+nmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
+vmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
 
 " Word Count:
 let b:word_count = minimd#UpdateWordCount()
