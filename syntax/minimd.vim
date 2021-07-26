@@ -2,7 +2,10 @@
 " Language:     Minimal Markdown
 " Author:       J. O. Brickley
 
-if exists("b:current_syntax")
+if exists("g:default_markdown_syntax")
+	set syntax=markdown
+	finish
+elseif exists("b:current_syntax")
     finish
 endif
 

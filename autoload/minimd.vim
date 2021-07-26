@@ -2,6 +2,12 @@
 " Language:     Minimal Markdown
 " Author:       J. O. Brickley
 
+if exists("g:default_markdown_syntax")
+	let b:headerSynName = "markdownHeadingDelimiter"
+else
+	let b:headerSynName = "mdHeader"
+end
+
 " Folding:
 
 function! minimd#FoldAllHeaders(lvl)
@@ -104,7 +110,7 @@ endfunction
 
 function! minimd#IsHeader(ln)
   let l:currID = synIDtrans(synID(a:ln, 1, 1))
-  let l:headID = synIDtrans(hlID("mdHeader"))
+  let l:headID = synIDtrans(hlID(b:headerSynName))
   if l:currID == l:headID
     return 1
   else
@@ -177,7 +183,7 @@ endfunction
 
 function! minimd#HeaderMotion(dir)
 	silent! normal! m'
-  let l:synID1 = synIDtrans(hlID("mdHeader"))
+  let l:synID1 = synIDtrans(hlID(b:headerSynName))
   while 1
     let l:pos1 = getpos(".")
 		" If in a fold
