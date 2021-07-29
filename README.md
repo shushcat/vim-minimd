@@ -33,7 +33,7 @@ As always in Vim, you can execute any command from Insert mode by prefixing it w
 
 ### Customization
 
-This plugin can be used with [Vim's default Markdown syntax]() by adding the line `let g:default_markdown_syntax = 1` to your `vimrc`.
+This plugin can be used with [Vim's default Markdown syntax](https://github.com/tpope/vim-markdown) by adding the line `let g:default_markdown_syntax = 1` to your `vimrc`.
 
 The default mappings for this plugin's folding, motion, header promotion and demotion, and task toggling commands are as follows.
 
