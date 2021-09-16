@@ -33,7 +33,7 @@ syntax region blockCode start=/^\s*$\n^\s*\~\~\~.*$/ end=/^\s*\~\~\~$\n\s*$/
 highlight default link blockCode String
 
 " Block Quotes:
-syntax match blockQuote /^>.*\n\(.*\n\@<!\n\)*/ skipnl
+syntax region blockQuote start=/^\s\{0,3\}>\s\?.*\n/ end=/^$/
 highlight default link blockQuote Comment
 
 " Ignored Section:
