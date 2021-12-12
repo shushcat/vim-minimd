@@ -1,12 +1,15 @@
 # minimd
 
-Minimd is a small plugin for writing long [Markdown](https://commonmark.org/) documents in Vim.  It is mostly a simple implementation of the header visibility cycling idea from [Org Mode](https://orgmode.org/) for Emacs, which makes it easy to keep track of the contents of long documents by displaying outlines based on the headlines in those documents.  Its main features are
+Minimd is a Vim plugin that helps with writing long [Markdown](https://commonmark.org/) documents by folding sections and showing outlines of their contents.
 
-- Fast section folding, even for very long documents;
-- Display of unfolded headers as outlines of their contents;
-- A header motion command that ignores code blocks (so doesn't mistake `#` comments for headers);
-- Basic task management with checkbox toggling, along with `ACTV`, `TODO`, and `DONE` keywords;
-- A word count, from Vim's fast builtin `wordcount()` function, in the status line, set to update only when toggling between insert and normal modes.
+The basic idea is that pressing spacebar on an _unfolded_ level 1 header will fold that header, while pressing spacebar on a _folded_ level 1 header will both unfold it and fold all the level 2 headers it contains.  If you fold then unfold a level 3 header, any level 4 headers are folded, and so on.  Pressing a number followed by the spacebar folds all headers of that number, which is an outline.
+
+Minimd also has a few other features to make working with long documents easier:
+
+- Header motion command that ignore code blocks (so don't mistake `#` comments for headers);
+- Minimal syntax highlighting (headers, code blocks, square brackets, checkboxes, and the task markers `ACTV`, `TODO`, `WAIT`, `CNCL`, and `DONE`) so as not to be too distracting and to speed up the folding a bit
+- Shortcuts to simultaneously change the levels of all headers within a fold
+- A fast word count (in the status line by default) that updates only when toggling between insert and normal modes.
 
 ## Demonstration
 
@@ -47,10 +50,16 @@ The default mappings for this plugin's folding, motion, header promotion and dem
     nmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
     vmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
 
-Note that, according to `:help v:count`, the mappings for `MiniMDToggleFold`, `MiniMDNext`, and `MiniMDPrev` must be prefixed with `<C-u>` in order for the functions wrapped by those commands to accept numeric arguments.  So if, e.g., you wanted to add another mapping for the folding command, you would do so with a line like the following:
+Note that, according to `:help v:count`, the mappings for `MiniMDToggleFold`, `MiniMDNext`, and `MiniMDPrev` must be prefixed with `<C-u>` in order for the functions wrapped by those commands to accept numeric arguments.  So if, e.g., you wanted to map the folding command to `z`, you would add a line like the following to your `.vimrc`:
 
     nmap z :<C-u>MiniMDToggleFold<CR>
 
-## Exporting with Pandoc
+## Exporting Files
 
-If you would like to export your Markdown file to another format, [Pandoc](https://pandoc.org/) can probably do what you want; you can easily set keybindings to facilitate repeated exports.  For instance, the sequence `<Leader>ep` could be set to export a PDF of the current Markdown file by adding the line `autocmd FileType minimd nmap <Leader>ep :!pandoc -f markdown -o example.pdf '%'` to your `vimrc`.  See [the Pandoc manual](https://pandoc.org/MANUAL.html) for an overview of its many options.
+Exports to other file types are best done with [Pandoc](https://pandoc.org) since Minimd strictly adheres to a subset of the overlap between [Pandoc's Markdown syntax](https://pandoc.org/MANUAL.html#pandocs-markdown) and [the Commonmark specification](https://spec.commonmark.org/).
+
+You can easily set keybindings to facilitate repeated exports.  For instance, the sequence `<Leader>ep` could be set to export a PDF of the current Markdown file by adding the line `autocmd FileType minimd nmap <Leader>ep :!pandoc -f markdown -o example.pdf '%'` to your `vimrc`.  See [the Pandoc manual](https://pandoc.org/MANUAL.html) for an overview of its many options.
+
+## Related Projects
+
+Minimd started out as an implementation of the header visibility cycling idea from [Org Mode](https://orgmode.org/) (and of [Outline Mode](https://www.gnu.org/software/emacs/manual/html_node/emacs/Outline-Mode.html) before that) for Emacs.  If you use Emacs, you should probably use one of those, and it should probably be Org Mode.
