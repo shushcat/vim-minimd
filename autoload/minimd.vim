@@ -41,9 +41,8 @@ function! minimd#FoldHeader()
 			let l:beg = line(".")
 		endif
 	endif
-	let l:hmark = repeat("#", l:beglvl)
 	while 1
-		execute search("^" . l:hmark . " ", "W")
+		execute search("^#", "W")
 		let l:end = line(".")
 		let l:endlvl = minimd#HeaderLevel()
 		if l:end == 1
