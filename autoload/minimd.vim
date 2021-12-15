@@ -42,7 +42,7 @@ function! minimd#FoldHeader()
 		endif
 	endif
 	while 1
-		execute search("^#", "W")
+		execute search('^ \{0,3\}#\{1,' . l:beglvl . '\} ', "W")
 		let l:end = line(".")
 		let l:endlvl = minimd#HeaderLevel()
 		if l:end == 1
