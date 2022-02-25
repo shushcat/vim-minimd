@@ -228,16 +228,3 @@ function! minimd#HeaderMotion(dir, lvl)
     endif
   endwhile
 endfunction
-
-" Word Count:
-
-function! minimd#ReturnWordCount()
-  return b:word_count
-endfunction
-
-function! minimd#UpdateWordCount()
-  let b:word_count = wordcount()["words"]
-endfunction
-autocmd InsertLeave * call minimd#UpdateWordCount()
-autocmd TextChanged * call minimd#UpdateWordCount()
-autocmd BufEnter * call minimd#UpdateWordCount()

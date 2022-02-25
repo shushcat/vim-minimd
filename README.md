@@ -9,7 +9,6 @@ Minimd also has a few other features to make working with long documents easier:
 - Header motion command that ignore code blocks (so don't mistake `#` comments for headers);
 - Minimal syntax highlighting (headers, code blocks, square brackets, checkboxes, and the task markers `ACTV`, `TODO`, `WAIT`, `CNCL`, and `DONE`) so as not to be too distracting and to speed up the folding a bit
 - Shortcuts to simultaneously change the levels of all headers within a fold
-- A fast word count (in the status line by default) that updates only when toggling between insert and normal modes.
 
 ## Demonstration
 

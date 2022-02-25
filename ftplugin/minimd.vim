@@ -59,7 +59,3 @@ nmap k gk
 command! MiniMDTaskToggle call minimd#TaskToggle()
 nmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
 vmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
-
-" Word Count:
-let b:word_count = minimd#UpdateWordCount()
-setlocal statusline=%<%f\ wc:%{minimd#ReturnWordCount()}\ %h%m%r%=%-14.(%l,%c%V%)\ %P
