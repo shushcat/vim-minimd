@@ -45,15 +45,15 @@ function! minimd#FoldHeader()
 		execute search('^ \{0,3\}#\{1,' . l:beglvl . '\} ', "W")
 		let l:end = line(".")
 		let l:endlvl = minimd#HeaderLevel()
-		if l:end == 1
+		if l:end == 1 || l:end == line("$")
 			let l:end = line("$")
 			break
-		elseif l:endlvl <= l:beglvl && minimd#IsHeader(l:end)
+		elseif (l:endlvl <= l:beglvl) && (l:endlvl > 0)
 			let l:end = line(".")
 			break
 		endif
 	endwhile
-	call minimd#FoldRange(l:beg, l:end)
+	call s:FoldRange(l:beg, l:end)
 	execute l:beg
 endfunction
 
@@ -88,8 +88,12 @@ function! minimd#ToggleFold(lvl)
 	endif
 endfunction
 
-function! minimd#HeaderLevel()
-  let l:ln = line(".")
+function! minimd#HeaderLevel(...)
+	if a:0 == 1
+		let l:ln = a:1
+	else
+		let l:ln = line(".")
+	endif
 	let l:txt = getline(l:ln)
 	if (minimd#IsHeader(l:ln)) == 0
 		return 0
@@ -98,11 +102,21 @@ function! minimd#HeaderLevel()
 	endif
 endfunction
 
-function! minimd#FoldRange(l1, l2)
-  if (a:l2 == line('$')) && !(minimd#IsHeader(a:l2))
-    execute a:l1 ',' a:l2 'fold'
-  elseif ((a:l1 >= a:l2) || (a:l1 == (a:l2 - 1)))
+function! s:FoldRange(l1, l2)
+	let hlvl1 = minimd#HeaderLevel(a:l1)
+	let hlvl2 = minimd#HeaderLevel(a:l2)
+  if ((a:l1 >= a:l2) || (a:l1 == (a:l2 - 1)))
     return
+	elseif (a:l2 == line('$'))
+		if (l:hlvl2 > 0)
+			if (l:hlvl1 < l:hlvl2)
+				execute a:l1 ',' a:l2 'fold'
+			elseif (l:hlvl1 >= l:hlvl2)
+				execute a:l1 ',' a:l2 - 1 'fold'
+			endif
+		elseif l:hlvl2 == 0
+			execute a:l1 ',' a:l2 'fold'
+		endif
   else
     execute a:l1 ',' a:l2 - 1 'fold'
   endif
