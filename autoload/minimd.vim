@@ -147,6 +147,7 @@ endfunction
 function! minimd#TaskToggle()
   let b:line = getline(".")
   let b:linenum = line(".")
+  " Cycle checkboxes.
   if b:line =~ '^\s*\(-\|*\|+\|\d\+\.\) \[ \] .*$'
     let b:newline = substitute(b:line, '\[ \] ', '\[x\] ', "")
     call setline(b:linenum, b:newline)
@@ -157,6 +158,17 @@ function! minimd#TaskToggle()
     let b:newline = substitute(b:line, '\(^\s*\)\(-\|*\|+\|\d\+\.\)\s', '\1\2 \[ \] ', "")
     call setline(b:linenum, b:newline)
     execute "normal! 4l"
+  endif
+  " Cycle headlines.
+  if b:line =~ '^##* \s*TODO .*$'
+    let b:newline = substitute(b:line, '\s*TODO\s*', ' DONE ', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^##* \s*DONE .*$'
+    let b:newline = substitute(b:line, '\s*DONE\s*', ' ', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^##*.*$'
+    let b:newline = substitute(b:line, '\(^#*\)', '\1 TODO ', "")
+    call setline(b:linenum, b:newline)
   endif
 endfunction
 
