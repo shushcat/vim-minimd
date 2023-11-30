@@ -167,7 +167,7 @@ function! minimd#TaskToggle()
     let b:newline = substitute(b:line, '\s*DONE\s*', ' ', "")
     call setline(b:linenum, b:newline)
   elseif b:line =~ '^##*.*$'
-    let b:newline = substitute(b:line, '\(^#*\)', '\1 TODO ', "")
+    let b:newline = substitute(b:line, '\(^#*\)\s*', '\1 TODO ', "")
     call setline(b:linenum, b:newline)
   endif
 endfunction
