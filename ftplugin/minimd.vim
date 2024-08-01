@@ -59,3 +59,6 @@ nmap k gk
 command! MiniMDTaskToggle call minimd#TaskToggle()
 nmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
 vmap <silent><buffer> <CR> :MiniMDTaskToggle<CR>
+command! MiniMDTaskToggleAll call minimd#TaskToggleAll()
+nmap <silent><buffer> <Esc><CR> :MiniMDTaskToggleAll<CR>
+vmap <silent><buffer> <Esc><CR> :MiniMDTaskToggleAll<CR>

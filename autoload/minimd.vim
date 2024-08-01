@@ -163,12 +163,51 @@ function! minimd#TaskToggle()
   if b:line =~ '^##* \s*TODO .*$'
     let b:newline = substitute(b:line, '\s*TODO\s*', ' DONE ', "")
     call setline(b:linenum, b:newline)
+	elseif b:line =~ '^##* \s*ACTV .*$'
+    let b:newline = substitute(b:line, '\s*ACTV\s*', ' DONE ', "")
+    call setline(b:linenum, b:newline)
+	elseif b:line =~ '^##* \s*WAIT .*$'
+    let b:newline = substitute(b:line, '\s*WAIT\s*', ' DONE ', "")
+    call setline(b:linenum, b:newline)
+  elseif b:line =~ '^##* \s*CNCL .*$'
+    let b:newline = substitute(b:line, '\s*CNCL\s*', ' ', "")
+    call setline(b:linenum, b:newline)
   elseif b:line =~ '^##* \s*DONE .*$'
     let b:newline = substitute(b:line, '\s*DONE\s*', ' ', "")
     call setline(b:linenum, b:newline)
   elseif b:line =~ '^##*.*$'
     let b:newline = substitute(b:line, '\(^#*\)\s*', '\1 TODO ', "")
     call setline(b:linenum, b:newline)
+  endif
+endfunction
+
+function! minimd#TaskToggleAll()
+  let b:line = getline(".")
+  let b:linenum = line(".")
+  if b:line =~ '^##* \s*.*$'
+		" If it's a headline:
+		if b:line =~ '^##* \s*TODO .*$'
+			let b:newline = substitute(b:line, '\s*TODO\s*', ' ACTV ', "")
+			call setline(b:linenum, b:newline)
+		elseif b:line =~ '^##* \s*ACTV .*$'
+			let b:newline = substitute(b:line, '\s*ACTV\s*', ' WAIT ', "")
+			call setline(b:linenum, b:newline)
+		elseif b:line =~ '^##* \s*WAIT .*$'
+			let b:newline = substitute(b:line, '\s*WAIT\s*', ' CNCL ', "")
+			call setline(b:linenum, b:newline)
+		elseif b:line =~ '^##* \s*CNCL .*$'
+			let b:newline = substitute(b:line, '\s*CNCL\s*', ' DONE ', "")
+			call setline(b:linenum, b:newline)
+		elseif b:line =~ '^##* \s*DONE .*$'
+			let b:newline = substitute(b:line, '\s*DONE\s*', ' ', "")
+			call setline(b:linenum, b:newline)
+		elseif b:line =~ '^##*.*$'
+			let b:newline = substitute(b:line, '\(^#*\)\s*', '\1 TODO ', "")
+			call setline(b:linenum, b:newline)
+		endif
+  else
+		" Otherwise:
+		call minimd#TaskToggle()
   endif
 endfunction
 

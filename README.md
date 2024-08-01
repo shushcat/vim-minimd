@@ -16,18 +16,23 @@ Minimd also has a few other features to make working with long documents easier:
 
 ## Usage
 
-| Normal Mode Key            | Action                                 | 
-| ---------------            | ------                                 | 
-| `Space`                    | Fold or unfold the current header.     | 
-| _n_`Space`                 | Fold all headers of level _n_.         | 
-| `Tab` or `]h`              | Jump to next header.                   | 
-| _n_`Tab` or _n_`]h`        | Jump to next header of level _n_.      | 
-| `Shift-Tab` or `[h`        | Jump to previous header.               | 
-| _n_`Shift-Tab` or _n_`[h`  | Jump to previous header of level _n_.  | 
-| `=`                        | Promote header (`#` → `##`).           | 
-| `-`                        | Demote header (`##` → `#`).            | 
-| `Enter`                    | Add and toggle checkboxes in lists     | 
-|                            | (`-` → `- [ ]` → `- [x]` → `- [ ]`).   | 
+| Normal mode key              | Action                                      | 
+| ---------------              | ------                                      | 
+| `Space`                      | Fold or unfold the current header.          | 
+| _n_`Space`                   | Fold all headers of level _n_.              | 
+| `Tab` or `]h`                | Jump to next header.                        | 
+| _n_`Tab` or _n_`]h`          | Jump to next header of level _n_.           | 
+| `Shift-Tab` or `[h`          | Jump to previous header.                    | 
+| _n_`Shift-Tab` or _n_`[h`    | Jump to previous header of level _n_.       | 
+| `=`                          | Promote header (`#` → `##`).                | 
+| `-`                          | Demote header (`##` → `#`).                 | 
+| `Enter`                      | Add and toggle checkboxes in lists          | 
+|                              | (`-` → `- [ ]` → `- [x]` → `- [ ]`),        | 
+|                              | or cycle between headline states            | 
+|                              | (`#` → `# TODO` → `# DONE` → `#`).          | 
+| `Escape Enter`               | Cycle between additional headline states    | 
+|                              | (`#` → `# TODO` → `# ACTV` → `# WAIT`       | 
+|                              | `# CNCL` → `# DONE` → `#`).                 | 
 
 The header promotion and demotion commands act on all enclosed headers when invoked on a fold.
 
